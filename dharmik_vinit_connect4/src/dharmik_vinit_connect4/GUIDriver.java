@@ -1,10 +1,17 @@
 package dharmik_vinit_connect4;
 
+import javax.swing.*;
+
 public class GUIDriver {
 
 	public static void main(String[] args) {
-		// TODO Auto-generated method stub
-
+		JFrame frame = new JFrame("Connect 4");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.getContentPane().add(new GUIPanel());
+		frame.pack();
+		frame.setVisible(true);
+		frame.setResizable(false);
 	}
 
 }
+
