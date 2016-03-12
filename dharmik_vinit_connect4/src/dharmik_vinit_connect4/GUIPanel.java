@@ -13,6 +13,9 @@ private int columns = 7;
 private Board board;
 private JButton[] buttons;
 private JLabel[][] lblChips;
+private boolean winner= false;
+private ImageIcon redChip;
+private ImageIcon blueChip;
 Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
 
 public GUIPanel()
@@ -25,6 +28,9 @@ public GUIPanel()
 	board.setUpTextBoard();
 	
 	createGUIBoard();
+	
+	redChip = new ImageIcon("red-chip.png");
+	blueChip = new ImageIcon("blue-chip.png");
 }
 
 private void createGUIBoard() {
@@ -35,6 +41,7 @@ private void createGUIBoard() {
 		buttons[i] = new JButton(String.valueOf(i));
 		buttons[i].setFont(new Font("Arial", Font.BOLD, 30));
 		buttons[i].setForeground(Color.WHITE);
+		buttons[i].setBackground(Color.RED);
 		buttons[i].addActionListener(this);
 		add(buttons[i]);;
 		}
@@ -81,7 +88,56 @@ public void actionPerformed(ActionEvent e) {
 	{
 		board.updateTextArray(6);
 	}
+	
+	checkValidColumn();
 	board.printTextArray();
+	winner = board.checkWinner();
+	updateGUI();
+	setTurnGuides();
+	if (winner)
+	{
+		JOptionPane.showMessageDialog(null, "The winner is "+board.getWinner());
+	}
+}
+
+private void updateGUI() {
+	int posX = board.getPosX();
+	int posY = board.getPosY();
+	if (board.getTurn()%2==0)
+	{
+		lblChips[posX][posY].setIcon(redChip);
+	}
+	else
+	{
+		lblChips[posX][posY].setIcon(blueChip);
+	}
+	board.updateTurn();	
+}
+
+private void setTurnGuides() {
+	int turn = board.getTurn();
+	Color colorToFill;
+	if (turn%2==0)
+	{
+		colorToFill = Color.RED;
+	}
+	else { colorToFill = Color.BLUE; }
+	
+	for (JButton i: buttons)
+	{
+		i.setBackground(colorToFill);
+	}
+	
+}
+
+private void checkValidColumn() {
+	int columnToRemove = board.checkValidColumn(buttons);
+	System.out.println(columnToRemove+ " A");
+	if (columnToRemove!=-1)
+	{
+		buttons[columnToRemove].setEnabled(false);
+	}
+	
 }
 }
 
