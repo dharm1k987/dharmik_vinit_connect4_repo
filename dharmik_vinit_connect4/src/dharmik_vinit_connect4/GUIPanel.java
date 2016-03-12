@@ -94,10 +94,23 @@ public void actionPerformed(ActionEvent e) {
 	winner = board.checkWinner();
 	updateGUI();
 	setTurnGuides();
+	if (board.isDraw())
+	{
+		JOptionPane.showMessageDialog(null, "Draw!");
+	}
 	if (winner)
 	{
 		JOptionPane.showMessageDialog(null, "The winner is "+board.getWinner());
+		disableAllButtons();
 	}
+}
+
+private void disableAllButtons() {
+	for (JButton i: buttons)
+	{
+		i.setEnabled(false);
+	}
+	
 }
 
 private void updateGUI() {

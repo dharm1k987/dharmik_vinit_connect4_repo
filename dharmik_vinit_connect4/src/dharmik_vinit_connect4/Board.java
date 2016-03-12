@@ -199,6 +199,18 @@ private int posY;
 		turn++;
 		
 	}
+	public boolean isDraw() {
+		int countOfFull = 0;
+		for (int i = 0 ; i < columns; i++)
+		{
+			if (textBoard[0][i].getColor()!=Color.BLACK)
+			{
+				countOfFull++;
+			}
+		}
+		return countOfFull==columns? true:false;
+		
+	}
 	
 		
 	}
