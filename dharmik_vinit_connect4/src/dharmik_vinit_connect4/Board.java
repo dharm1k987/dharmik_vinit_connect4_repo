@@ -142,7 +142,7 @@ private int posY;
 	
 	public int checkValidColumn(JButton[] buttons) {
 		int temp = -1;
-		for (int i = 0; i < 7; i++) {
+		for (int i = 0; i < columns; i++) {
 			if (textBoard[0][i].getColor() !=Color.BLACK && buttons[i].isEnabled()!=false) {
 				temp = i;
 				return temp;

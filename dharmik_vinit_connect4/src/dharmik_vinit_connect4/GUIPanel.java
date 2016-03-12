@@ -11,18 +11,32 @@ public class GUIPanel extends JPanel implements ActionListener {
 private int rows = 7;
 private int columns = 7;
 private Board board;
+private JButton onePlayer;
+private JButton twoPlayers;
+private JLabel titleScreen;
 private JButton[] buttons;
 private JLabel[][] lblChips;
 private boolean winner= false;
 private ImageIcon redChip;
 private ImageIcon blueChip;
+private ImageIcon titleScreenIcon;
 Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
 
 public GUIPanel()
 {
 	
 	setPreferredSize(new Dimension(500, 600));
-	setLayout(new GridLayout(rows+1,columns));
+	setLayout(new GridLayout(3, 1,10,10));
+	
+	titleScreenIcon = new ImageIcon("connect-4-logo.png");
+	titleScreen = new JLabel();
+	titleScreen.setIcon(titleScreenIcon);
+	add(titleScreen);
+	onePlayer = new JButton("1 Player");
+	add(onePlayer);
+	twoPlayers = new JButton("2 Player");
+	add(twoPlayers);
+	/*setLayout(new GridLayout(rows+1,columns));
 	
 	board = new Board(rows,columns);
 	board.setUpTextBoard();
@@ -30,7 +44,7 @@ public GUIPanel()
 	createGUIBoard();
 	
 	redChip = new ImageIcon("red-chip.png");
-	blueChip = new ImageIcon("blue-chip.png");
+	blueChip = new ImageIcon("blue-chip.png");*/
 }
 
 private void createGUIBoard() {
@@ -88,6 +102,7 @@ public void actionPerformed(ActionEvent e) {
 	{
 		board.updateTextArray(6);
 	}
+
 	
 	checkValidColumn();
 	board.printTextArray();
