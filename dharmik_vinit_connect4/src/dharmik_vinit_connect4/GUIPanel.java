@@ -28,23 +28,24 @@ public GUIPanel()
 	setPreferredSize(new Dimension(500, 600));
 	setLayout(new GridLayout(3, 1,10,10));
 	
-	titleScreenIcon = new ImageIcon("connect-4-logo.png");
+	/*titleScreenIcon = new ImageIcon("connect-4-logo.png");
 	titleScreen = new JLabel();
 	titleScreen.setIcon(titleScreenIcon);
 	add(titleScreen);
 	onePlayer = new JButton("1 Player");
 	add(onePlayer);
 	twoPlayers = new JButton("2 Player");
-	add(twoPlayers);
-	/*setLayout(new GridLayout(rows+1,columns));
+	add(twoPlayers);*/
+	setLayout(new GridLayout(rows+1,columns));
 	
 	board = new Board(rows,columns);
 	board.setUpTextBoard();
 	
+	
 	createGUIBoard();
 	
 	redChip = new ImageIcon("red-chip.png");
-	blueChip = new ImageIcon("blue-chip.png");*/
+	blueChip = new ImageIcon("blue-chip.png");
 }
 
 private void createGUIBoard() {

@@ -123,6 +123,7 @@ public class Board {
 						setWinner(textBoard[i][x].getColor());
 						break outerloop;
 					}
+				}
 
 					if (x <= 3 && i <= 3) {
 						result = checkDiagonalDownRight(i, x, result);
@@ -139,7 +140,7 @@ public class Board {
 						}
 					}
 
-				}
+				
 			}
 
 		}
