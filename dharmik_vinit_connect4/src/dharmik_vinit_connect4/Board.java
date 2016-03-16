@@ -164,6 +164,7 @@ public class Board {
 		for (int i = 0; i < 7; i++) {
 			if (textBoard[0][i].getColor() != Color.BLACK && buttons[i].isEnabled() != false) {
 				temp = i;
+				System.out.println("column to be disabled is "+i+"\n");
 				return temp;
 			}
 		}

@@ -103,13 +103,13 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		
 		
 		board.printTextArray();
-		checkValidColumn();
+		
 		
 		
 		
 		
 		updateGUI();
-		
+		checkValidColumn();
 		setTurnGuides();
 		
 		
@@ -125,6 +125,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 			JOptionPane.showMessageDialog(null, "The winner is " + board.getWinner());
 			disableAllButtons();
 		}
+		checkValidColumn();
 	}
 	
 	private void disableAllButtons() {
