@@ -15,7 +15,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 	private JLabel[][] lblChips;
 	private boolean winner = false;
 	private ImageIcon redChip;
-	private ImageIcon blueChip;
+	private ImageIcon blueChip;	
 	Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
 
 	public TwoPlayerPanel() {
@@ -30,6 +30,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 
 		redChip = new ImageIcon("red-chip.png");
 		blueChip = new ImageIcon("blue-chip.png");
+		
 	}
 
 	private void createGUIBoard() {
@@ -47,8 +48,9 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 
 		for (int i = 0; i < rows; i++) {
 			for (int x = 0; x < columns; x++) {
-				lblChips[i][x] = new JLabel();
+				lblChips[i][x] = new JLabel();				
 				lblChips[i][x].setBorder(border);
+				
 
 				add(lblChips[i][x]);
 
