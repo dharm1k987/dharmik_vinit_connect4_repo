@@ -43,19 +43,20 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		createGUIBoard();
 
 		playerChip = new ImageIcon("red-chip.png");
-		AIChip = new ImageIcon("blue-chip.png");
+		AIChip = new ImageIcon("yellow-chip.png");
 	}
 	
 
 	private void createGUIBoard() {
 		buttons = new JButton[columns];
 		lblChips = new JLabel[rows][columns];
-		for (int i = 0; i < columns; i++) {
-			buttons[i] = new JButton(String.valueOf(i));
-			buttons[i].setFont(new Font("Arial", Font.BOLD, 30));
+		for (int i = 0; i < columns; i++) {			
+			buttons[i] = new JButton("");
+			//buttons[i].setFont(new Font("Courier New", Font.BOLD, 60));
 			buttons[i].setForeground(Color.WHITE);
 			buttons[i].setBackground(Color.RED);
 			buttons[i].addActionListener(this);
+			buttons[i].setBorder(border);
 			add(buttons[i]);
 		}
 
@@ -130,6 +131,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	
 	private void disableAllButtons() {
 		for (JButton i : buttons) {
+			i.setBackground(Color.YELLOW);
 			i.setEnabled(false);
 		}
 
@@ -148,7 +150,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 			for(int j = 0; j < txtbrd.length; j++) {
 				if (txtbrd[i][j].getColor().equals(Color.RED)) {
 					lblChips[i][j].setIcon(playerChip);
-				} else if (txtbrd[i][j].getColor().equals(Color.BLUE)){
+				} else if (txtbrd[i][j].getColor().equals(Color.YELLOW)){
 					lblChips[i][j].setIcon(AIChip);	
 				} 
 			}
@@ -156,17 +158,14 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		
 	}
 
-	private void setTurnGuides() {
-		int turn = board.getTurn();
-		Color colorToFill = Color.RED;
-		
+
+	private void setTurnGuides() {		
 
 		for (JButton i : buttons) {
-			i.setBackground(colorToFill);
+			i.setBackground(new Color(255,0,0));
 		}
 
 	}
-
 	private void checkValidColumn() {
 		int columnToRemove = board.checkValidColumn(buttons);
 		System.out.println(columnToRemove + " A");

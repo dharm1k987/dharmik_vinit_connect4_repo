@@ -31,10 +31,10 @@ public class AIcomponent {
 	public void evaluateBoard() {
 		defensiveScoringPosition = evaluatePossiblePositions(Color.RED);
 		
-		offensiveScoringPosition = evaluatePossiblePositions(Color.BLUE);
+		offensiveScoringPosition = evaluatePossiblePositions(Color.YELLOW);
 		
 		
-		offensiveScore = getHighestInRow(offensiveScoringPosition, getCorrespondingY(offensiveScoringPosition), Color.BLUE);
+		offensiveScore = getHighestInRow(offensiveScoringPosition, getCorrespondingY(offensiveScoringPosition), Color.YELLOW);
 		defensiveScore = getHighestInRow(defensiveScoringPosition, getCorrespondingY(defensiveScoringPosition), Color.RED);
 		
 		//System.out.println("defensive Score: "+defensiveScore);

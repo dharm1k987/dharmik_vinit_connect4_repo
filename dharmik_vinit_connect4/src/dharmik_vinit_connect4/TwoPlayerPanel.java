@@ -15,7 +15,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 	private JLabel[][] lblChips;
 	private boolean winner = false;
 	private ImageIcon redChip;
-	private ImageIcon blueChip;	
+	private ImageIcon yellowChip;	
 	Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
 
 	public TwoPlayerPanel() {
@@ -29,7 +29,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		createGUIBoard();
 
 		redChip = new ImageIcon("red-chip.png");
-		blueChip = new ImageIcon("blue-chip.png");
+		yellowChip = new ImageIcon("yellow-chip.png");
 		
 	}
 
@@ -37,13 +37,14 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		buttons = new JButton[columns];
 		lblChips = new JLabel[rows][columns];
 		for (int i = 0; i < columns; i++) {
-			buttons[i] = new JButton(String.valueOf(i));
-			buttons[i].setFont(new Font("Arial", Font.BOLD, 30));
+			buttons[i] = new JButton("");
+			//buttons[i].setFont(new Font("Courier New", Font.BOLD, 60));
 			buttons[i].setForeground(Color.WHITE);
 			buttons[i].setBackground(Color.RED);
 			buttons[i].addActionListener(this);
+			buttons[i].setBorder(border);
 			add(buttons[i]);
-			;
+			
 		}
 
 		for (int i = 0; i < rows; i++) {
@@ -99,6 +100,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 
 	private void disableAllButtons() {
 		for (JButton i : buttons) {
+			i.setBackground(Color.YELLOW);
 			i.setEnabled(false);
 		}
 
@@ -108,7 +110,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		int posX = board.getPosX();
 		int posY = board.getPosY();
 		if (board.getTurn() % 2 == 0) {
-			lblChips[posX][posY].setIcon(blueChip);
+			lblChips[posX][posY].setIcon(yellowChip);
 		} else {
 			lblChips[posX][posY].setIcon(redChip);
 		}
@@ -119,9 +121,9 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		int turn = board.getTurn();
 		Color colorToFill;
 		if (turn % 2 == 0) {
-			colorToFill = Color.RED;
+			colorToFill = new Color(255,0,0);
 		} else {
-			colorToFill = Color.BLUE;
+			colorToFill = new Color(255,255,0);
 		}
 
 		for (JButton i : buttons) {

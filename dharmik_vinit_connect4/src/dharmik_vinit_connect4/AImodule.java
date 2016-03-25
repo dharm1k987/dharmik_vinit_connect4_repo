@@ -118,7 +118,7 @@ public class AImodule {
 		} else {
 			try {
 				if (((board.getColor(movesX[index], movesY[index]+1).equals(Color.RED)) 
-						|| (board.getColor(movesX[index], movesY[index]+1).equals(Color.BLUE))) 
+						|| (board.getColor(movesX[index], movesY[index]+1).equals(Color.YELLOW))) 
 						&& (board.getColor(movesX[index], movesY[index]).equals(Color.BLACK))) {
 					
 				} else {

@@ -44,7 +44,7 @@ public class Board {
 					break;
 				} else {
 					
-					textBoard[i][temp].setColor(Color.BLUE);
+					textBoard[i][temp].setColor(Color.YELLOW);
 					posX = i;
 					posY = temp;
 					break;
@@ -91,7 +91,7 @@ public class Board {
 			for (int x = 0; x < columns; x++) {
 				if (textBoard[i][x].getColor() == Color.RED) {
 					System.out.print("R ");
-				} else if (textBoard[i][x].getColor() == Color.BLUE) {
+				} else if (textBoard[i][x].getColor() == Color.YELLOW) {
 					System.out.print("B ");
 				} else {
 					System.out.print("N ");
@@ -155,7 +155,7 @@ public class Board {
 		if (winner == Color.RED) {
 			return "Red";
 		} else {
-			return "Blue";
+			return "Yellow";
 		}
 	}
 
