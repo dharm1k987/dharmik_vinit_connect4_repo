@@ -17,7 +17,7 @@ import javax.swing.JPanel;
 import javax.swing.border.Border;
 
 public class OnePlayerPanel extends JPanel implements ActionListener {
-	
+
 	private int rows = 7;
 	private int columns = 7;
 	private Board board;
@@ -27,9 +27,9 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	private ImageIcon playerChip;
 	private ImageIcon AIChip;
 	Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
-	
+
 	private AIcomponent AI;
-	
+
 	public OnePlayerPanel() {
 
 		setPreferredSize(new Dimension(500, 600));
@@ -38,21 +38,20 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		board = new Board(rows, columns);
 		board.setUpTextBoard();
 
-		//AI= new AImodule(board);
-		AI= new AIcomponent(board);
+		// AI= new AImodule(board);
+		AI = new AIcomponent(board);
 		createGUIBoard();
 
 		playerChip = new ImageIcon("red-chip.png");
 		AIChip = new ImageIcon("yellow-chip.png");
 	}
-	
 
 	private void createGUIBoard() {
 		buttons = new JButton[columns];
 		lblChips = new JLabel[rows][columns];
-		for (int i = 0; i < columns; i++) {			
+		for (int i = 0; i < columns; i++) {
 			buttons[i] = new JButton("");
-			//buttons[i].setFont(new Font("Courier New", Font.BOLD, 60));
+			// buttons[i].setFont(new Font("Courier New", Font.BOLD, 60));
 			buttons[i].setForeground(Color.WHITE);
 			buttons[i].setBackground(Color.RED);
 			buttons[i].addActionListener(this);
@@ -71,11 +70,11 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		}
 
 	}
-	
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttons[0]) {
 			board.updateTextArray(0);
-			
+
 		}
 		if (e.getSource() == buttons[1]) {
 			board.updateTextArray(1);
@@ -96,28 +95,18 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 			board.updateTextArray(6);
 		}
 		updateGUI();
-		
-		
-		
+
 		AI.evaluateBoard();
 		board.updateTextArray(AI.getAIPosX());
-		
-		
+
 		board.printTextArray();
-		
-		
-		
-		
-		
+
 		updateGUI();
 		checkValidColumn();
 		setTurnGuides();
-		
-		
-		//board.updateTextArray(AI.getAIposX());
-		
-		
-		
+
+		// board.updateTextArray(AI.getAIposX());
+
 		winner = board.checkWinner();
 		if (board.isDraw()) {
 			JOptionPane.showMessageDialog(null, "Draw!");
@@ -128,7 +117,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		}
 		checkValidColumn();
 	}
-	
+
 	private void disableAllButtons() {
 		for (JButton i : buttons) {
 			i.setBackground(Color.DARK_GRAY);
@@ -136,36 +125,35 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		}
 
 	}
-	
+
 	private void updateGUI() {
 		int posX = board.getPosX();
 		int posY = board.getPosY();
-		/*if (board.getTurn() % 2 == 0) {
-			lblChips[posX][posY].setIcon(AIChip);
-		} else {
-			lblChips[posX][posY].setIcon(playerChip);
-		}*/
+		/*
+		 * if (board.getTurn() % 2 == 0) { lblChips[posX][posY].setIcon(AIChip);
+		 * } else { lblChips[posX][posY].setIcon(playerChip); }
+		 */
 		Chip[][] txtbrd = board.getTextBoard();
 		for (int i = 0; i < txtbrd.length; i++) {
-			for(int j = 0; j < txtbrd.length; j++) {
+			for (int j = 0; j < txtbrd.length; j++) {
 				if (txtbrd[i][j].getColor().equals(Color.RED)) {
 					lblChips[i][j].setIcon(playerChip);
-				} else if (txtbrd[i][j].getColor().equals(Color.YELLOW)){
-					lblChips[i][j].setIcon(AIChip);	
-				} 
+				} else if (txtbrd[i][j].getColor().equals(Color.YELLOW)) {
+					lblChips[i][j].setIcon(AIChip);
+				}
 			}
 		}
-		
+
 	}
 
-
-	private void setTurnGuides() {		
+	private void setTurnGuides() {
 
 		for (JButton i : buttons) {
-			i.setBackground(new Color(255,0,0));
+			i.setBackground(new Color(255, 0, 0));
 		}
 
 	}
+
 	private void checkValidColumn() {
 		int columnToRemove = board.checkValidColumn(buttons);
 		System.out.println(columnToRemove + " A");
