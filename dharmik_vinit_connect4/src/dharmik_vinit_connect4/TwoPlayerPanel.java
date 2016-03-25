@@ -100,7 +100,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 
 	private void disableAllButtons() {
 		for (JButton i : buttons) {
-			i.setBackground(Color.YELLOW);
+			i.setBackground(Color.DARK_GRAY);
 			i.setEnabled(false);
 		}
 
