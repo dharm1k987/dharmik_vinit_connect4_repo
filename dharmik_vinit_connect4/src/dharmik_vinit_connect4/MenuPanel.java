@@ -22,10 +22,10 @@ public  class MenuPanel extends JPanel implements ActionListener {
 		setLayout(null);
 		//setBounds(100, 100, 500, 600);
 	
-		btnFont = new Font("Tahoma", Font.PLAIN, 15);
+		btnFont = new Font("Tahoma", Font.BOLD, 20);
 		
-		this.onePlayerBtn = new JButton("One Player Mode");
-		this.twoPlayerBtn = new JButton("Two Player Mode");
+		this.onePlayerBtn = new JButton("One Player");
+		this.twoPlayerBtn = new JButton("Two Players");
 		this.helpBtn = new JButton("Help");
 		
 		onePlayerBtn.setFont(btnFont);
@@ -62,8 +62,9 @@ public  class MenuPanel extends JPanel implements ActionListener {
 	public void actionPerformed (ActionEvent e)
 	{
 		if (e.getSource() == onePlayerBtn) {
-			JFrame frame2 = new JFrame("Connect 4");
-			frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			
+			JFrame frame2 = new JFrame("Connect 4 - 1P");
+			frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			frame2.getContentPane().add(new OnePlayerPanel());
 			frame2.pack();
 			frame2.setVisible(true);
@@ -71,8 +72,8 @@ public  class MenuPanel extends JPanel implements ActionListener {
 			
 		}
 		if (e.getSource() == twoPlayerBtn) {
-			JFrame frame2 = new JFrame("Connect 4");
-			frame2.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+			JFrame frame2 = new JFrame("Connect 4 - 2P");
+			frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			frame2.getContentPane().add(new TwoPlayerPanel());
 			frame2.pack();
 			frame2.setVisible(true);

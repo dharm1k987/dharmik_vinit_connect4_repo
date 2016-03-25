@@ -37,7 +37,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		buttons = new JButton[columns];
 		lblChips = new JLabel[rows][columns];
 		for (int i = 0; i < columns; i++) {
-			buttons[i] = new JButton("");
+			buttons[i] = new JButton();
 			//buttons[i].setFont(new Font("Courier New", Font.BOLD, 60));
 			buttons[i].setForeground(Color.WHITE);
 			buttons[i].setBackground(Color.RED);
