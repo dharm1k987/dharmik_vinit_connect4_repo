@@ -16,6 +16,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 	private boolean winner = false;
 	private ImageIcon redChip;
 	private ImageIcon yellowChip;	
+	private ImageIcon xMark;
 	Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
 
 	public TwoPlayerPanel() {
@@ -30,6 +31,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 
 		redChip = new ImageIcon("red-chip.png");
 		yellowChip = new ImageIcon("yellow-chip.png");
+		xMark = new ImageIcon("x-mark.png");
 		
 	}
 
@@ -135,6 +137,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 	private void checkValidColumn() {
 		int columnToRemove = board.checkValidColumn(buttons);
 			if (columnToRemove != -1) {
+				buttons[columnToRemove].setIcon(xMark);
 			buttons[columnToRemove].setEnabled(false);
 		}
 

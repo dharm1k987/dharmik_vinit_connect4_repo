@@ -26,6 +26,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	private boolean winner = false;
 	private ImageIcon playerChip;
 	private ImageIcon AIChip;
+	private ImageIcon xMark;
 	Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
 
 	private AIcomponent AI;
@@ -44,6 +45,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 
 		playerChip = new ImageIcon("red-chip.png");
 		AIChip = new ImageIcon("yellow-chip.png");
+		xMark = new ImageIcon("x-mark.png");
 	}
 
 	private void createGUIBoard() {
@@ -158,6 +160,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		int columnToRemove = board.checkValidColumn(buttons);
 		System.out.println(columnToRemove + " A");
 		if (columnToRemove != -1) {
+			buttons[columnToRemove].setIcon(xMark);
 			buttons[columnToRemove].setEnabled(false);
 		}
 
