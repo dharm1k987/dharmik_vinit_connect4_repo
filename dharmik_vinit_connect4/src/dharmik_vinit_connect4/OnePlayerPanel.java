@@ -92,26 +92,36 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		}
 	
 		updateGUI();
-	
-		AI.evaluateBoard();
-	
-		board.updateTextArray(AI.getFinalPositionX());
-
-	
-		updateGUI();
-		
 		checkValidColumn();
-		setTurnGuides();
-
 		winner = board.checkWinner();
-		if (board.isDraw()) {
-			JOptionPane.showMessageDialog(null, "Draw!");
-		}
 		if (winner) {
 			JOptionPane.showMessageDialog(null, "The winner is " + board.getWinner());
 			disableAllButtons();
 		}
-		checkValidColumn();
+		else
+		{
+			AI.evaluateBoard();
+			
+			board.updateTextArray(AI.getFinalPositionX());
+
+		
+			updateGUI();
+			
+			checkValidColumn();
+			setTurnGuides();
+
+			winner = board.checkWinner();
+			if (board.isDraw()) {
+				disableAllButtons();
+				JOptionPane.showMessageDialog(null, "Draw!");
+			}
+			if (winner) {
+				JOptionPane.showMessageDialog(null, "The winner is " + board.getWinner());
+				disableAllButtons();
+			}
+			
+		}
+		
 	}
 
 

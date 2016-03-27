@@ -93,6 +93,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		setTurnGuides();
 		if (board.isDraw()) {
 			JOptionPane.showMessageDialog(null, "Draw!");
+			disableAllButtons();
 		}
 		if (winner) {
 			JOptionPane.showMessageDialog(null, "The winner is " + board.getWinner());
