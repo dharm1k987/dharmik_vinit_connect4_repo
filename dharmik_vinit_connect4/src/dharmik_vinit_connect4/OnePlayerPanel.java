@@ -1,19 +1,12 @@
 package dharmik_vinit_connect4;
 
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
-import java.awt.GridLayout;
+
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.concurrent.TimeUnit;
 
-import javax.swing.BorderFactory;
-import javax.swing.Icon;
-import javax.swing.ImageIcon;
-import javax.swing.JButton;
-import javax.swing.JLabel;
-import javax.swing.JOptionPane;
-import javax.swing.JPanel;
+import javax.swing.*;
 import javax.swing.border.Border;
 
 public class OnePlayerPanel extends JPanel implements ActionListener {
@@ -39,7 +32,6 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		board = new Board(rows, columns);
 		board.setUpTextBoard();
 
-		// AI= new AImodule(board);
 		AI = new AIcomponent(board);
 		createGUIBoard();
 
@@ -74,6 +66,8 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	}
 
 	public void actionPerformed(ActionEvent e) {
+		
+
 		if (e.getSource() == buttons[0]) {
 			board.updateTextArray(0);
 
@@ -96,18 +90,18 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		if (e.getSource() == buttons[6]) {
 			board.updateTextArray(6);
 		}
+	
 		updateGUI();
-
+	
 		AI.evaluateBoard();
+	
 		board.updateTextArray(AI.getFinalPositionX());
 
-		board.printTextArray();
-
+	
 		updateGUI();
+		
 		checkValidColumn();
 		setTurnGuides();
-
-		// board.updateTextArray(AI.getAIposX());
 
 		winner = board.checkWinner();
 		if (board.isDraw()) {
@@ -120,6 +114,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		checkValidColumn();
 	}
 
+
 	private void disableAllButtons() {
 		for (JButton i : buttons) {
 			i.setBackground(Color.DARK_GRAY);
@@ -129,12 +124,8 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	}
 
 	private void updateGUI() {
-		int posX = board.getPosX();
-		int posY = board.getPosY();
-		/*
-		 * if (board.getTurn() % 2 == 0) { lblChips[posX][posY].setIcon(AIChip);
-		 * } else { lblChips[posX][posY].setIcon(playerChip); }
-		 */
+
+		
 		Chip[][] txtbrd = board.getTextBoard();
 		for (int i = 0; i < txtbrd.length; i++) {
 			for (int j = 0; j < txtbrd.length; j++) {
@@ -145,7 +136,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 				}
 			}
 		}
-
+		
 	}
 
 	private void setTurnGuides() {

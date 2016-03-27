@@ -1,9 +1,6 @@
 package dharmik_vinit_connect4;
 
-import java.awt.BorderLayout;
-import java.awt.Color;
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
@@ -19,8 +16,7 @@ public  class MenuPanel extends JPanel implements ActionListener {
 	
 	public MenuPanel() {
 		setPreferredSize(new Dimension(500, 600));
-		setLayout(null);
-		//setBounds(100, 100, 500, 600);
+		setLayout(null);		
 	
 		btnFont = new Font("Tahoma", Font.BOLD, 20);
 		
@@ -78,6 +74,10 @@ public  class MenuPanel extends JPanel implements ActionListener {
 			frame2.pack();
 			frame2.setVisible(true);
 			frame2.setResizable(false);
+		}
+		if (e.getSource() == helpBtn)
+		{
+			JOptionPane.showMessageDialog(null, "Make a 4 in a row, either diagonally, vertically, or horizontally");
 		}
 	}
 

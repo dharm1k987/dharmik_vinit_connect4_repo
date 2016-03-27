@@ -1,9 +1,10 @@
 package dharmik_vinit_connect4;
 
 import java.awt.Color;
+import java.util.concurrent.TimeUnit;
 
 import javax.swing.JButton;
-import javax.swing.JLabel;
+
 
 public class Board {
 	private Chip[][] textBoard;
@@ -34,7 +35,7 @@ public class Board {
 	}
 
 	public void updateTextArray(int temp) {
-		
+	
 		for (int i = rows - 1; i >= 0; i--) {
 			if (textBoard[i][temp].getColor() == Color.BLACK) {
 				if (turn%2 == 0) {
@@ -86,29 +87,14 @@ public class Board {
 	public Chip[][] getTextBoard () {
 		return textBoard;
 	}
-	public void printTextArray() {
-		for (int i = 0; i < rows; i++) {
-			for (int x = 0; x < columns; x++) {
-				if (textBoard[i][x].getColor() == Color.RED) {
-					System.out.print("R ");
-				} else if (textBoard[i][x].getColor() == Color.YELLOW) {
-					System.out.print("B ");
-				} else {
-					System.out.print("N ");
-				}
-			}
-			System.out.print("\n");
-		}
-		System.out.print("\n");
 
-	}
 
 	public boolean checkWinner() {
 		boolean result = false;
 		outerloop: for (int i = rows - 1; i >= 0; i--) {
 			for (int x = 0; x < columns; x++) {
 				if (x <= 3) {
-					result = checkRight(i, x, result);
+					result = checkHorizontal(i, x, result);
 					if (result) {
 						setWinner(textBoard[i][x].getColor());
 						break outerloop;
@@ -118,7 +104,7 @@ public class Board {
 				}
 
 				if (i >= 3) {
-					result = checkUp(i, x, result);
+					result = checkVertical(i, x, result);
 					if (result) {
 						setWinner(textBoard[i][x].getColor());
 						break outerloop;
@@ -126,14 +112,14 @@ public class Board {
 				}
 
 					if (x <= 3 && i <= 3) {
-						result = checkDiagonalDownRight(i, x, result);
+						result = checkDiagonalRight(i, x, result);
 						if (result) {
 							setWinner(textBoard[i][x].getColor());
 							break outerloop;
 						}
 					}
 					if (x >= 3 && i <= 3) {
-						result = checkDiagonalDownLeft(i, x, result);
+						result = checkDiagonalLeft(i, x, result);
 						if (result) {
 							setWinner(textBoard[i][x].getColor());
 							break outerloop;
@@ -172,7 +158,7 @@ public class Board {
 
 	}
 
-	private boolean checkDiagonalDownLeft(int i, int x, boolean result) {
+	private boolean checkDiagonalLeft(int i, int x, boolean result) {
 		if (textBoard[i][x].getColor() != Color.BLACK
 				&& textBoard[i][x].getColor() == textBoard[i + 1][x - 1].getColor()
 				&& textBoard[i][x].getColor() == textBoard[i + 2][x - 2].getColor()
@@ -183,7 +169,7 @@ public class Board {
 		return result;
 	}
 
-	private boolean checkDiagonalDownRight(int i, int x, boolean result) {
+	private boolean checkDiagonalRight(int i, int x, boolean result) {
 		if (textBoard[i][x].getColor() != Color.BLACK
 				&& textBoard[i][x].getColor() == textBoard[i + 1][x + 1].getColor()
 				&& textBoard[i][x].getColor() == textBoard[i + 2][x + 2].getColor()
@@ -194,7 +180,7 @@ public class Board {
 		return result;
 	}
 
-	private boolean checkUp(int i, int x, boolean result) {
+	private boolean checkVertical(int i, int x, boolean result) {
 		if (textBoard[i][x].getColor() != Color.BLACK && textBoard[i][x].getColor() == textBoard[i - 1][x].getColor()
 				&& textBoard[i][x].getColor() == textBoard[i - 2][x].getColor()
 				&& textBoard[i][x].getColor() == textBoard[i - 3][x].getColor()) {
@@ -204,7 +190,7 @@ public class Board {
 		return result;
 	}
 
-	private boolean checkRight(int i, int x, boolean result) {
+	private boolean checkHorizontal(int i, int x, boolean result) {
 		if (textBoard[i][x].getColor() != Color.BLACK && textBoard[i][x].getColor() == textBoard[i][x + 1].getColor()
 				&& textBoard[i][x].getColor() == textBoard[i][x + 2].getColor()
 				&& textBoard[i][x].getColor() == textBoard[i][x + 3].getColor()) {

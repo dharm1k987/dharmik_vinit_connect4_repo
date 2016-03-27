@@ -2,6 +2,7 @@ package dharmik_vinit_connect4;
 
 import java.awt.Color;
 import java.util.ArrayList;
+import java.util.concurrent.TimeUnit;
 
 public class AIcomponent {
 	
@@ -38,6 +39,7 @@ public class AIcomponent {
 	 * Return: Void
 	 */
 	public void evaluateBoard() {
+
 		
 		evaluatePositions(Color.RED);
 		evaluatePositions(Color.YELLOW);
@@ -60,6 +62,7 @@ public class AIcomponent {
 		
 		//finalPositionX = offensiveScoringPosition;
 		
+	
 	}
 	/**
 	 * Post: 

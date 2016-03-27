@@ -87,7 +87,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		}
 
 		checkValidColumn();
-		board.printTextArray();
+	
 		winner = board.checkWinner();
 		updateGUI();
 		setTurnGuides();
