@@ -99,7 +99,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		updateGUI();
 
 		AI.evaluateBoard();
-		board.updateTextArray(AI.getAIPosX());
+		board.updateTextArray(AI.getFinalPositionX());
 
 		board.printTextArray();
 
