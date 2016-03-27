@@ -90,7 +90,7 @@ public class AIcomponent {
 	 * a chip on top to achieve four in a row, to -1. It's a stupid move.
 	 */
 	public void filterStupidMove() {
-		for (int i = 0; i < positionsWithOffScore[0].length-1; i++) {
+		for (int i = 0; i < positionsWithOffScore[0].length; i++) {
 			if ((getHighestInRow(i, getCorrespondingY(i)-1, Color.RED) >= 3) && (((getHighestInRow(i, getCorrespondingY(i), Color.RED) != 3) && (getHighestInRow(i, getCorrespondingY(i), Color.YELLOW) != 3)))) {
 				positionsWithOffScore[1][i] = -1;
 				positionsWithDefScore[1][i] = -1;
