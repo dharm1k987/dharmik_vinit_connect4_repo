@@ -150,7 +150,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	private void checkValidColumn() {
 		int columnToRemove = board.checkValidColumn(buttons);
 		System.out.println(columnToRemove + " A");
-		if (columnToRemove != -1) {
+		if (columnToRemove != -1) {			
 			buttons[columnToRemove].setIcon(xMark);
 			buttons[columnToRemove].setEnabled(false);
 		}

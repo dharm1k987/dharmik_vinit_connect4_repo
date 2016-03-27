@@ -5,7 +5,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 
-
+/**
+ * Class is a GUI menu, which allows the user to pick the game type (1p/2p).
+ * Implements ActionListener.
+ * @author Dharmik, Vinit
+ * @version 1.0
+ */
 public  class MenuPanel extends JPanel implements ActionListener {
 
 	private JButton onePlayerBtn;
@@ -14,6 +19,9 @@ public  class MenuPanel extends JPanel implements ActionListener {
 	private Font btnFont;
 	private JLabel background;
 	
+	/**
+	 * Default constructor. Creates GUI menu.
+	 */
 	public MenuPanel() {
 		setPreferredSize(new Dimension(500, 600));
 		setLayout(null);		
@@ -55,6 +63,9 @@ public  class MenuPanel extends JPanel implements ActionListener {
 		
 	}
 	
+	/**
+	 * Action Listener method from ActionListener class handles events.
+	 */
 	public void actionPerformed (ActionEvent e)
 	{
 		if (e.getSource() == onePlayerBtn) {
