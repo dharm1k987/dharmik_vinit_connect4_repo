@@ -24,6 +24,9 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 
 	private AIcomponent AI;
 
+	/**
+	 * Constructor: instantiates a panel object.
+	 */
 	public OnePlayerPanel() {
 
 		setPreferredSize(new Dimension(500, 600));
@@ -32,7 +35,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		board = new Board(rows, columns);
 		board.setUpTextBoard();
 
-		AI = new AIcomponent(board);
+		AI = new AIcomponent(board, Color.RED, Color.YELLOW);
 		createGUIBoard();
 
 		playerChip = new ImageIcon("red-chip.png");
@@ -40,6 +43,10 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		xMark = new ImageIcon("x-mark.png");
 	}
 
+	
+	/**
+	 * Method: Creates a GUI board in the panel.
+	 */
 	private void createGUIBoard() {
 		buttons = new JButton[columns];
 		lblChips = new JLabel[rows][columns];
@@ -62,9 +69,14 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 
 			}
 		}
-
 	}
+	/**
+	 * Post: changes the buttons array accordingly.
+	 */
 
+	/**
+	 * Method: Checks which buttons are pressed in the OnePlayerPanel.
+	 */
 	public void actionPerformed(ActionEvent e) {
 		
 
@@ -108,7 +120,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 			updateGUI();
 			
 			checkValidColumn();
-			setTurnGuides();
+			//setTurnGuides();
 
 			winner = board.checkWinner();
 			if (board.isDraw()) {
@@ -123,8 +135,14 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		}
 		
 	}
+	/**
+	 * Post: If there is a winner, sets the winner variable to true
+	 */
 
 
+	/**
+	 * Method: Disables all the buttons on the panel.
+	 */
 	private void disableAllButtons() {
 		for (JButton i : buttons) {
 			i.setBackground(Color.DARK_GRAY);
@@ -133,6 +151,9 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 
 	}
 
+	/**
+	 * Method: Updates the GUI board after a turn is played.
+	 */
 	private void updateGUI() {
 
 		
@@ -149,6 +170,9 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		
 	}
 
+	/**
+	 * 
+	 */
 	private void setTurnGuides() {
 
 		for (JButton i : buttons) {
@@ -157,6 +181,9 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 
 	}
 
+	/**
+	 * Method: Disables the appropriate button according to whichever column is full.
+	 */
 	private void checkValidColumn() {
 		int columnToRemove = board.checkValidColumn(buttons);
 		System.out.println(columnToRemove + " A");
@@ -166,5 +193,8 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		}
 
 	}
+	/**
+	 * Post: the buttons array updates by disabling the button whose column has been filled.
+	 */
 
 }

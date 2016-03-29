@@ -10,18 +10,26 @@ public class AIcomponent {
 	private int[] AIPosX;
 	private int[] AIPosY;
 	private int finalPositionX;
-	private int defensiveScoringPosition;
-	private int offensiveScoringPosition;
-	private int offensiveScore;
-	private int defensiveScore;
+	private Color playerColor;
+	private Color AIColor;
 	private int positionsWithOffScore[][];
 	private int positionsWithDefScore[][];
+	private int numberOfValidMoves;
 
 	
-	
-	public AIcomponent(Board board) {
+	/**
+	 * Method: used to initiate the AI bot.
+	 * @param board: Assumes it is a Board object
+	 * @param playerColor: Assumes it is a Color object
+	 * @param AIColor: Assumes it is a Color object
+	 */
+	public AIcomponent(Board board, Color playerColor, Color AIColor) {
 		this.board = board;
+		this.numberOfValidMoves = 7;
+		this.playerColor = playerColor;
+		this.AIColor = AIColor;
 		AIPosX = new int[7];
+		
 		positionsWithOffScore = new int[2][7];
 		positionsWithDefScore = new int[2][7];
 		for (int i = 0; i < AIPosX.length; i++) {
@@ -41,10 +49,11 @@ public class AIcomponent {
 	public void evaluateBoard() {
 
 		
-		evaluatePositions(Color.RED);
-		evaluatePositions(Color.YELLOW);
+		evaluatePositions(playerColor);
+		evaluatePositions(AIColor);
 		
 		//filters all the valid moves
+		numberOfValidMoves = 7;
 		filterInvalidMoves();
 		filterStupidMove(); // possible change this order???
 		
@@ -65,7 +74,8 @@ public class AIcomponent {
 	
 	}
 	/**
-	 * Post: 
+	 * Post: changes the positionsWithOffScore array, positionsWithDefScore, numberOfValidMoves, and the finalPositionX
+	 * with the appropriate methods used.  
 	 */
 	
 	/**
@@ -76,7 +86,7 @@ public class AIcomponent {
 		
 		for (int i = 0; i < positionsWithOffScore[0].length; i++) {
 			if (getCorrespondingY(i)+1 == 0) {
-				
+				numberOfValidMoves -= 1;
 				positionsWithOffScore[1][i] = -1;
 				positionsWithDefScore[1][i] = -1;
 			}
@@ -93,12 +103,25 @@ public class AIcomponent {
 	 * a chip on top to achieve four in a row, to -1. It's a stupid move.
 	 */
 	public void filterStupidMove() {
+		int numberOfStupidMoves = 0;
 		for (int i = 0; i < positionsWithOffScore[0].length; i++) {
-			if ((getHighestInRow(i, getCorrespondingY(i)-1, Color.RED) >= 3) && (((getHighestInRow(i, getCorrespondingY(i), Color.RED) != 3) && (getHighestInRow(i, getCorrespondingY(i), Color.YELLOW) != 3)))) {
-				positionsWithOffScore[1][i] = -1;
-				positionsWithDefScore[1][i] = -1;
-				System.out.println("Position which is stupid: "+positionsWithOffScore[0][i]);
+			if ((getHighestInRow(i, getCorrespondingY(i)-1, playerColor) >= 3) && (((getHighestInRow(i, getCorrespondingY(i), playerColor) != 3) && (getHighestInRow(i, getCorrespondingY(i), AIColor) != 3)))) {
+				numberOfStupidMoves += 1;
+				
 			}
+		}
+		
+		
+		if (numberOfValidMoves != numberOfStupidMoves) {
+			for (int i = 0; i < positionsWithOffScore[0].length; i++) {
+				if ((getHighestInRow(i, getCorrespondingY(i)-1, playerColor) >= 3) && (((getHighestInRow(i, getCorrespondingY(i), playerColor) != 3) && (getHighestInRow(i, getCorrespondingY(i), AIColor) != 3)))) {
+					positionsWithOffScore[1][i] = -1;
+					positionsWithDefScore[1][i] = -1;
+					System.out.println("Position which is stupid: "+positionsWithOffScore[0][i]);
+				}
+			}
+		} else {
+			System.out.println("They equal bruh");
 		}
 	}
 	/**
@@ -143,7 +166,11 @@ public class AIcomponent {
 	 */
 	
 
-	
+	/**
+	 * Method:	uses the positionWithOffScore and positionWithDefScore arrays to make a series of comparisons
+	 * and determine the most appropriate move for the AI. Sets this move to the final move to be used. Both the
+	 * arrays are already in order of highest scoring position to lowest scoring position
+	 */
 	public void setFinalPositionX() {
 		
 		if ((positionsWithOffScore[1][0] > positionsWithDefScore[1][0]) && (positionsWithDefScore[1][0] <= 2)) {
@@ -162,6 +189,9 @@ public class AIcomponent {
 		}
 		
 	}
+	/**
+	 * Post: finalPositionX has been changed to a value between 0-6, as chosen by this method.
+	 */
 	
 
 	
@@ -193,8 +223,7 @@ public class AIcomponent {
 	 * @param color: Assumes it is a valid Color object. 
 	 */
 	private void evaluatePositions(Color color) {
-		int[] position = new int[AIPosX.length];
-		int[] positionScore = new int[AIPosX.length];
+		
 		
 		for (int l = 0; l <  AIPosX.length; l++) {
 			innerloop: for (int j = 0; j < AIPosY.length; j++) {
@@ -209,19 +238,17 @@ public class AIcomponent {
 				}
 			}
 		}		
-		if (color.equals(Color.RED)) {
+		if (color.equals(playerColor)) {
 			for (int i = 0; i < AIPosX.length; i++) {
-				positionsWithDefScore[0][i] = i; // Don't need.
+				positionsWithDefScore[0][i] = i; 
 				positionsWithDefScore[1][i] = getHighestInRow(AIPosX[i], AIPosY[i], color);
 			}
-		} else if (color.equals(Color.YELLOW)) {
+		} else if (color.equals(AIColor)) {
 			for (int i = 0; i < AIPosX.length; i++) {
-				positionsWithOffScore[0][i] = i; // Don't need.
+				positionsWithOffScore[0][i] = i; 
 				positionsWithOffScore[1][i] = getHighestInRow(AIPosX[i], AIPosY[i], color);
 			}
 		}
-		
-		//DON'T NEED FROM HERE
 		
 	}
 	/**
@@ -232,7 +259,6 @@ public class AIcomponent {
 
 	/**
 	 * @Method: returns the final x-position (integer).
-	 * @return
 	 */
 	public int getFinalPositionX() { return finalPositionX; }
 	
@@ -328,11 +354,13 @@ public class AIcomponent {
 	}
 	
 	/**
-	 * 
-	 * @param directionValue: 
-	 * @param domainValue: Should be 0 or 1.
-	 * @param axisValue: 
-	 * @return
+	 * Method: Used in the evaluateDirection() method. Used to increment to the next location in the grid
+	 * according to whichever direction the check for highest in the row is headed.
+	 * @param directionValue: should be an integer between 0-6, inclusively, for each direction from a given location
+	 * in the grid.
+	 * @param domainValue: Should be 0 or 1. (0 = vertical, and 1 = horizontal)
+	 * @param axisValue: incremented by 1. Assumed to be an integer.
+	 * @return: returns an integer.
 	 */
 	private int checkDirection (int directionValue, int domainValue, int axisValue) {
 		if (directionValue == 3) {
