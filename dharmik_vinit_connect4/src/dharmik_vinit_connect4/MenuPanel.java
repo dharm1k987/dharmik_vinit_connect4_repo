@@ -3,6 +3,10 @@ package dharmik_vinit_connect4;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
+import java.awt.event.WindowListener;
+
 import javax.swing.*;
 
 /**
@@ -68,29 +72,45 @@ public  class MenuPanel extends JPanel implements ActionListener {
 	 */
 	public void actionPerformed (ActionEvent e)
 	{
-		if (e.getSource() == onePlayerBtn) {
-			
-			JFrame frame2 = new JFrame("Connect 4 - 1P");
+		if (e.getSource() == onePlayerBtn || e.getSource() == twoPlayerBtn) {
+			JFrame frame2;
+			if (e.getSource() == onePlayerBtn)
+			{
+			frame2 = new JFrame("Connect 4 - 1P");
 			frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 			frame2.getContentPane().add(new OnePlayerPanel());
 			frame2.pack();
 			frame2.setVisible(true);
 			frame2.setResizable(false);
+			}
+			else
+			{		frame2 = new JFrame("Connect 4 - 2P");
+					frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+					frame2.getContentPane().add(new TwoPlayerPanel());
+					frame2.pack();
+					frame2.setVisible(true);
+					frame2.setResizable(false);
+					
+					
+				}
+			frame2.addWindowListener(new WindowAdapter() {
+			
+		    public void windowClosing(WindowEvent e) {
+		        Board.setTurn(0);
+		        }		    
+			});
+		
 			
 		}
-		if (e.getSource() == twoPlayerBtn) {
-			JFrame frame2 = new JFrame("Connect 4 - 2P");
-			frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-			frame2.getContentPane().add(new TwoPlayerPanel());
-			frame2.pack();
-			frame2.setVisible(true);
-			frame2.setResizable(false);
-		}
+		
 		if (e.getSource() == helpBtn)
 		{
 			JOptionPane.showMessageDialog(null, "Make a 4 in a row, either diagonally, vertically, or horizontally");
 		}
+		
+		
 	}
-
+	
+	
 	
 }

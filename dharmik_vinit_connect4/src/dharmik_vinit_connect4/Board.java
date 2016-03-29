@@ -49,6 +49,17 @@ public class Board {
 	public int getTurn() {
 		return turn;
 	}
+	
+	/**
+	 * Mutator method. This method is static because the MenuPanel should be 
+	 * able to access it. It is needed to change the turn to 0 (red), when 
+	 * the JFrame closes.
+	 * @param turn - turn to be set
+	 */
+	public static void setTurn(int turn)
+	{
+		Board.turn = turn;
+	}
 
 	/**
 	 * Updates the text board Array after the user clicks a button.
