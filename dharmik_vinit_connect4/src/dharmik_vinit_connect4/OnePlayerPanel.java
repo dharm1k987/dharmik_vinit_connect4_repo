@@ -82,9 +82,10 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	/**
 	 * Method: Checks which buttons are pressed in the OnePlayerPanel.
 	 */
+	
 	public void actionPerformed(ActionEvent e) {
 		
-
+		
 		if (e.getSource() == buttons[0]) {
 			board.updateTextArray(0);
 
@@ -122,7 +123,10 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 			board.updateTextArray(AI.getFinalPositionX());
 
 		
-			updateGUI();
+			
+			timeDelay(500);
+			
+			
 			
 			checkValidColumn();
 			//setTurnGuides();
@@ -180,7 +184,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	 */
 	private void checkValidColumn() {
 		int columnToRemove = board.checkValidColumn(buttons);
-		System.out.println(columnToRemove + " A");
+		
 		if (columnToRemove != -1) {			
 			buttons[columnToRemove].setIcon(xMark);
 			buttons[columnToRemove].setEnabled(false);
@@ -191,4 +195,17 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	 * Post: the buttons array updates by disabling the button whose column has been filled.
 	 */
 
+	/**
+	 * Method: Gets a long number value and delays the progam for that many milliseconds
+	 * @param sleeptime: Assumes it 
+	 */
+	public void timeDelay(long sleeptime) {
+		new java.util.Timer().schedule(new java.util.TimerTask() {		           
+		            public void run() {
+		            	updateGUI();
+		            }
+		        }, 
+		        sleeptime
+		);
+	}
 }

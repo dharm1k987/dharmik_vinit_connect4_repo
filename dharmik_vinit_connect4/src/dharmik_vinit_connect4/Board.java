@@ -90,33 +90,21 @@ public class Board {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Method: returns the x position of the chip
+	 * @return x position
 	 */
 	public int getPosX() {
 		return posX;
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Method: returns the y position of the chip
+	 * @return y position
 	 */
 	public int getPosY() {
 		return posY;
-	}
-	
-	/**
-	 * 
-	 * @param x
-	 * @return
-	 */
-	public boolean isOccupied(int x) {
-		if(textBoard[0][x].equals(Color.RED)){
-			return true;
-		} else {
-			return false;
-		}
-	}
+	}	
+
 	
 	/**
 	 * Method: Returns the color of a specified chip.

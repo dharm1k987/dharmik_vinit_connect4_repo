@@ -100,7 +100,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		checkValidColumn();
 	
 		winner = board.checkWinner();
-		updateGUI();
+		timeDelay(150);
 		setTurnGuides();
 		if (board.isDraw()) {
 			JOptionPane.showMessageDialog(null, "Draw!");
@@ -166,4 +166,19 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		}
 
 	}
+	
+	/**
+	 * Method: Gets a long number value and delays the progam for that many milliseconds
+	 * @param sleeptime: Assumes it 
+	 */
+	public void timeDelay(long sleeptime) {
+		new java.util.Timer().schedule(new java.util.TimerTask() {		           
+		            public void run() {
+		            	updateGUI();
+		            }
+		        }, 
+		        sleeptime
+		);
+	}
+	
 }

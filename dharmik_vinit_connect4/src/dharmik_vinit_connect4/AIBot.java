@@ -125,9 +125,7 @@ public class AIBot {
 					System.out.println("Position which is stupid: "+positionsWithOffScore[0][i]);
 				}
 			}
-		} else {
-			System.out.println("They equal bruh");
-		}
+		} 
 	}
 	/**
 	 * @Post: the positions where there is a stupid move, it's second array component (the score) is set
@@ -177,23 +175,23 @@ public class AIBot {
 	 * arrays are already in order of highest scoring position to lowest scoring position
 	 */
 	public void setFinalPositionX() {
-		System.out.print("AI's plays ");
-		//System.out.println("Offensive Score at "+positionsWithOffScore[0][0]+" is "+positionsWithOffScore[1][0]);
-		//System.out.println("Defensive Score at "+positionsWithDefScore[0][0]+" is "+positionsWithDefScore[1][0]);
+		System.out.print("AI Evaluation:  ");
+		System.out.println("Offensive Score at "+positionsWithOffScore[0][0]+" is "+positionsWithOffScore[1][0]);
+		System.out.println("Defensive Score at "+positionsWithDefScore[0][0]+" is "+positionsWithDefScore[1][0]);
 		
 		if ((positionsWithOffScore[1][0] > positionsWithDefScore[1][0]) && (positionsWithDefScore[1][0] <= 2)) {
 			finalPositionX = positionsWithOffScore[0][0];
-			System.out.println("offensively at "+finalPositionX);
+			System.out.println("AI plays offensively at "+finalPositionX);
 		} else if  (((positionsWithDefScore[1][0] == positionsWithOffScore[1][0])) && (positionsWithOffScore[1][0] == 3)) {
 			finalPositionX = positionsWithOffScore[0][0];
-			System.out.println("offensively at "+finalPositionX);
+			System.out.println("AI plays offensively at "+finalPositionX);
 		}
 		else if ((positionsWithDefScore[1][0] >= positionsWithOffScore[1][0])){
 			finalPositionX = positionsWithDefScore[0][0];
-			System.out.println("defensively at "+finalPositionX);
+			System.out.println("AI plays defensively at "+finalPositionX);
 		} else {
 			finalPositionX = positionsWithDefScore[0][0];
-			System.out.println("defensively at "+finalPositionX);
+			System.out.println("AI plays defensively at "+finalPositionX);
 		}
 		System.out.println(" ");
 	}
