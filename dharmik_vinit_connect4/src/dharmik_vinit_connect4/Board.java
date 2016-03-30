@@ -123,8 +123,8 @@ public class Board {
 	}
 
 	/**
-	 * 
-	 * @return
+	 * Accessor method.
+	 * @return textBoard
 	 */
 	public Chip[][] getTextBoard () {
 		return textBoard;
@@ -208,8 +208,7 @@ public class Board {
 		int temp = -1;
 		for (int i = 0; i < 7; i++) {
 			if (textBoard[0][i].getColor() != Color.BLACK && buttons[i].isEnabled() != false) {
-				temp = i;
-				System.out.println("column to be disabled is "+i+"\n");
+				temp = i;				
 				return temp;
 			}
 		}

@@ -4,8 +4,6 @@ package dharmik_vinit_connect4;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.util.concurrent.TimeUnit;
-
 import javax.swing.*;
 import javax.swing.border.Border;
 
@@ -25,7 +23,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	private ImageIcon playerChip;
 	private ImageIcon AIChip;
 	private ImageIcon xMark;
-	Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
+	private Border border;
 
 	private AIBot AI;
 
@@ -39,6 +37,8 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 
 		board = new Board(rows, columns);
 		board.setUpTextBoard();
+		
+		border = BorderFactory.createLineBorder(Color.BLACK, 3);
 
 		AI = new AIBot(board, Color.RED, Color.YELLOW);
 		createGUIBoard();
@@ -46,6 +46,8 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		playerChip = new ImageIcon("red-chip.png");
 		AIChip = new ImageIcon("yellow-chip.png");
 		xMark = new ImageIcon("x-mark.png");
+		JOptionPane.showMessageDialog(null, "You are playing against an AI. Please let the computer think and then move (takes a brief moment). \nRed starts.");
+		
 	}
 
 	
@@ -56,8 +58,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		buttons = new JButton[columns];
 		lblChips = new JLabel[rows][columns];
 		for (int i = 0; i < columns; i++) {
-			buttons[i] = new JButton("");
-			// buttons[i].setFont(new Font("Courier New", Font.BOLD, 60));
+			buttons[i] = new JButton("");			
 			buttons[i].setForeground(Color.WHITE);
 			buttons[i].setBackground(Color.RED);
 			buttons[i].addActionListener(this);
@@ -113,6 +114,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		checkValidColumn();
 		winner = board.checkWinner();
 		if (winner) {
+			timeDelay(500);
 			JOptionPane.showMessageDialog(null, "The winner is " + board.getWinner());
 			disableAllButtons();
 		}
@@ -129,14 +131,14 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 			
 			
 			checkValidColumn();
-			//setTurnGuides();
+			
 
 			winner = board.checkWinner();
 			if (board.isDraw()) {
 				disableAllButtons();
 				JOptionPane.showMessageDialog(null, "Draw!");
 			}
-			if (winner) {
+			if (winner) {				
 				JOptionPane.showMessageDialog(null, "The winner is " + board.getWinner());
 				disableAllButtons();
 			}
@@ -196,10 +198,10 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	 */
 
 	/**
-	 * Method: Gets a long number value and delays the progam for that many milliseconds
+	 * Method: Gets a long number value and delays the program for that many milliseconds
 	 * @param sleeptime: Assumes it 
 	 */
-	public void timeDelay(long sleeptime) {
+	private void timeDelay(long sleeptime) {
 		new java.util.Timer().schedule(new java.util.TimerTask() {		           
 		            public void run() {
 		            	updateGUI();

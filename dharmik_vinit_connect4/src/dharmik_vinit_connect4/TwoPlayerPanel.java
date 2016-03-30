@@ -22,7 +22,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 	private ImageIcon redChip;
 	private ImageIcon yellowChip;	
 	private ImageIcon xMark;
-	Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
+	private Border border;
 
 	public TwoPlayerPanel() {
 
@@ -31,12 +31,13 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 
 		board = new Board(rows, columns);
 		board.setUpTextBoard();
-
+		border = BorderFactory.createLineBorder(Color.BLACK, 3);
 		createGUIBoard();
 
 		redChip = new ImageIcon("red-chip.png");
 		yellowChip = new ImageIcon("yellow-chip.png");
 		xMark = new ImageIcon("x-mark.png");
+		
 		
 	}
 
@@ -47,8 +48,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		buttons = new JButton[columns];
 		lblChips = new JLabel[rows][columns];
 		for (int i = 0; i < columns; i++) {
-			buttons[i] = new JButton();
-			//buttons[i].setFont(new Font("Courier New", Font.BOLD, 60));
+			buttons[i] = new JButton();			
 			buttons[i].setForeground(Color.WHITE);
 			buttons[i].setBackground(Color.RED);
 			buttons[i].addActionListener(this);
