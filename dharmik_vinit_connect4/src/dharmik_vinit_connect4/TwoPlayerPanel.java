@@ -7,6 +7,11 @@ import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+/**
+ * This class is used when the user wants to play against another user.
+ * @author Dharmik, Vinit
+ * @version 1.0
+ */
 public class TwoPlayerPanel extends JPanel implements ActionListener {
 	private int rows = 7;
 	private int columns = 7;
@@ -35,6 +40,9 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		
 	}
 
+	/**
+	 * Method: Creates a GUI board in the panel.
+	 */
 	private void createGUIBoard() {
 		buttons = new JButton[columns];
 		lblChips = new JLabel[rows][columns];
@@ -61,8 +69,11 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		}
 
 	}
+	/**
+	 * Post: changes the buttons array accordingly.
+	 */
 
-	@Override
+
 	public void actionPerformed(ActionEvent e) {
 		if (e.getSource() == buttons[0]) {
 			board.updateTextArray(0);
@@ -101,6 +112,9 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		}
 	}
 
+	/**
+	 * Method: Disables all the buttons on the panel.
+	 */
 	private void disableAllButtons() {
 		for (JButton i : buttons) {
 			i.setBackground(Color.DARK_GRAY);
@@ -109,6 +123,9 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 
 	}
 
+	/**
+	 * Method: Updates the GUI board after a turn is played.
+	 */
 	private void updateGUI() {
 		int posX = board.getPosX();
 		int posY = board.getPosY();
@@ -120,6 +137,9 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		
 	}
 
+	/**
+	 * Method: Changes color to allow the user to know who's turn (red, yellow).
+	 */
 	private void setTurnGuides() {
 		int turn = board.getTurn();
 		Color colorToFill;
@@ -134,7 +154,10 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		}
 
 	}
-
+	
+	/**
+	 * Method: Disables the appropriate button according to whichever column is full.
+	 */
 	private void checkValidColumn() {
 		int columnToRemove = board.checkValidColumn(buttons);
 			if (columnToRemove != -1) {

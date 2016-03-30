@@ -6,7 +6,6 @@ public class GUIDriver {
 
 	/**
 	 * The Graphical User Interface driver that initiates the Menu.
-	 * @param args
 	 */
 	public static void main(String[] args) {
 		JFrame frame = new JFrame("Connect 4");

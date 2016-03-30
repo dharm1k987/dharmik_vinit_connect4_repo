@@ -31,7 +31,7 @@ public class Board {
 	}
 
 	/**
-	 * Method sets up a new 'Board' of type 'Chip'. Adds chips to each spot.
+	 * Method: Sets up a new 'Board' of type 'Chip'. Adds chips to each spot.
 	 */
 	public void setUpTextBoard() {
 		for (int i = 0; i < rows; i++) {
@@ -53,7 +53,7 @@ public class Board {
 	/**
 	 * Mutator method. This method is static because the MenuPanel should be 
 	 * able to access it. It is needed to change the turn to 0 (red), when 
-	 * the JFrame closes.
+	 * the JFrame closes, and another mode is selected.
 	 * @param turn - turn to be set
 	 */
 	public static void setTurn(int turn)
@@ -62,7 +62,7 @@ public class Board {
 	}
 
 	/**
-	 * Updates the text board Array after the user clicks a button.
+	 * Method: Updates the text board Array after the user clicks a button.
 	 * @param temp - the column they clicked.
 	 */
 	public void updateTextArray(int temp) {
@@ -119,10 +119,10 @@ public class Board {
 	}
 	
 	/**
-	 * Returns the colour of a specified chip.
+	 * Method: Returns the color of a specified chip.
 	 * @param x - the x array index.
 	 * @param y - the y array index.
-	 * @return the colour of the chip.
+	 * @return the color of the chip.
 	 */
 	public Color getColor(int x, int y) {
 		try {
@@ -143,7 +143,7 @@ public class Board {
 	}
 
 	/**
-	 * Evaluates text board and checks for a winner.
+	 * Method: Evaluates text board and checks for a winner.
 	 * @return true or false
 	 */
 	public boolean checkWinner() {
@@ -200,7 +200,7 @@ public class Board {
 
 	/**
 	 * Accessor method. 
-	 * @return the colour who won.
+	 * @return the color who wins.
 	 */
 	public String getWinner() {
 		if (winner == Color.RED) {
@@ -211,7 +211,8 @@ public class Board {
 	}
 
 	/**
-	 * Checks to see if a column is full, in which case it must be disabled.
+	 * Method: Checks to see if a column is full, in which 
+	 * case it must be disabled.
 	 * @param buttons - the GUI array which the user clicks as their column.
 	 * @return the column index to be disabled. -1, means none.
 	 */
@@ -229,7 +230,8 @@ public class Board {
 	}
 
 	/**
-	 * Checks the board to see winner from a left - diagonal perspective.
+	 * Method: Checks the board to see winner from
+	 * a left - diagonal perspective.
 	 * @param i - the board's row index.
 	 * @param x - the board's column index.
 	 * @param result - value to be returned. 
@@ -247,7 +249,8 @@ public class Board {
 	}
 
 	/**
-	 * Checks the board to see winner from a right - diagonal perspective.
+	 * Method: Checks the board to see winner 
+	 * from a right - diagonal perspective.
 	 * @param i - the board's row index.
 	 * @param x - the board's column index.
 	 * @param result - value to be returned. 
@@ -265,7 +268,7 @@ public class Board {
 	}
 
 	/**
-	 * Checks the board to see winner from a vertical perspective.
+	 * Method: Checks the board to see winner from a vertical perspective.
 	 * @param i - the board's row index.
 	 * @param x - the board's column index.
 	 * @param result - value to be returned. 
@@ -282,7 +285,7 @@ public class Board {
 	}
 
 	/**
-	 * Checks the board to see winner from a horizontal perspective.
+	 * Method: Checks the board to see winner from a horizontal perspective.
 	 * @param i - the board's row index.
 	 * @param x - the board's column index.
 	 * @param result - value to be returned. 
@@ -299,7 +302,7 @@ public class Board {
 	}
 
 	/**
-	 * Increments turn.
+	 * Method: Increments turn.
 	 */
 	public void updateTurn() {
 		turn++;
@@ -307,7 +310,7 @@ public class Board {
 	}
 
 	/**
-	 * Method checks to see if the game is a draw.
+	 * Method: Checks to see if the game is a draw.
 	 * @return true or false
 	 */
 	public boolean isDraw() {

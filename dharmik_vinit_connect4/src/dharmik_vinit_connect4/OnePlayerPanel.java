@@ -9,6 +9,11 @@ import java.util.concurrent.TimeUnit;
 import javax.swing.*;
 import javax.swing.border.Border;
 
+/**
+ * This class is used when the user wants to play against the AI.
+ * @author Dharmik, Vinit
+ * @version 1.0
+ */
 public class OnePlayerPanel extends JPanel implements ActionListener {
 
 	private int rows = 7;
@@ -168,17 +173,6 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 			}
 		}
 		
-	}
-
-	/**
-	 * 
-	 */
-	private void setTurnGuides() {
-
-		for (JButton i : buttons) {
-			i.setBackground(new Color(255, 0, 0));
-		}
-
 	}
 
 	/**

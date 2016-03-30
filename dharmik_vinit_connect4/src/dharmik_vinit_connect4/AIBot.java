@@ -4,6 +4,11 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
+/**
+ * Class serves as AI 'thinking class' where it analyzes the best move.
+ * @author Dharmik, Vinit
+ * @version 1.0
+ */
 public class AIBot {
 	
 	private Board board;
