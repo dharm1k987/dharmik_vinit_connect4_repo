@@ -4,7 +4,7 @@ import java.awt.Color;
 import java.util.ArrayList;
 import java.util.concurrent.TimeUnit;
 
-public class AIcomponent {
+public class AIBot {
 	
 	private Board board;
 	private int[] AIPosX;
@@ -23,7 +23,7 @@ public class AIcomponent {
 	 * @param playerColor: Assumes it is a Color object
 	 * @param AIColor: Assumes it is a Color object
 	 */
-	public AIcomponent(Board board, Color playerColor, Color AIColor) {
+	public AIBot(Board board, Color playerColor, Color AIColor) {
 		this.board = board;
 		this.numberOfValidMoves = 7;
 		this.playerColor = playerColor;
@@ -52,24 +52,24 @@ public class AIcomponent {
 		evaluatePositions(playerColor);
 		evaluatePositions(AIColor);
 		
-		//filters all the valid moves
+		//filters array of all valid moves.
 		numberOfValidMoves = 7;
 		filterInvalidMoves();
 		filterStupidMove(); // possible change this order???
 		
-		//need to sort
+		
+		//Sorted here.
 		sort(positionsWithOffScore);
 		sort(positionsWithDefScore);
 		
 
-		//System.out.println("defensive Score: "+defensiveScore);
-		System.out.println("Offense: At "+positionsWithOffScore[0][0]+", "+positionsWithOffScore[1][0]);
-		System.out.println("Defense: At "+positionsWithDefScore[0][0]+", "+positionsWithDefScore[1][0]);
-		//System.out.println("defensive Score: "+defensiveScore);
+		
+		
+		
 		
 		setFinalPositionX();
 		
-		//finalPositionX = offensiveScoringPosition;
+		
 		
 	
 	}
@@ -172,22 +172,25 @@ public class AIcomponent {
 	 * arrays are already in order of highest scoring position to lowest scoring position
 	 */
 	public void setFinalPositionX() {
+		System.out.print("AI's plays ");
+		//System.out.println("Offensive Score at "+positionsWithOffScore[0][0]+" is "+positionsWithOffScore[1][0]);
+		//System.out.println("Defensive Score at "+positionsWithDefScore[0][0]+" is "+positionsWithDefScore[1][0]);
 		
 		if ((positionsWithOffScore[1][0] > positionsWithDefScore[1][0]) && (positionsWithDefScore[1][0] <= 2)) {
 			finalPositionX = positionsWithOffScore[0][0];
-			System.out.println("offensive"+", "+finalPositionX);
+			System.out.println("offensively at "+finalPositionX);
 		} else if  (((positionsWithDefScore[1][0] == positionsWithOffScore[1][0])) && (positionsWithOffScore[1][0] == 3)) {
 			finalPositionX = positionsWithOffScore[0][0];
-			System.out.println("offensive 2"+", "+finalPositionX);
+			System.out.println("offensively at "+finalPositionX);
 		}
 		else if ((positionsWithDefScore[1][0] >= positionsWithOffScore[1][0])){
 			finalPositionX = positionsWithDefScore[0][0];
-			System.out.println("defensive"+", "+finalPositionX);
+			System.out.println("defensively at "+finalPositionX);
 		} else {
 			finalPositionX = positionsWithDefScore[0][0];
-			System.out.println("defensive"+", "+finalPositionX);
+			System.out.println("defensively at "+finalPositionX);
 		}
-		
+		System.out.println(" ");
 	}
 	/**
 	 * Post: finalPositionX has been changed to a value between 0-6, as chosen by this method.
@@ -299,7 +302,7 @@ public class AIcomponent {
 			}
 		}
 		
-			//System.out.println("Highest direction score: "+highestDirectionScore);
+			
 	
 		
 		return highestDirectionScore;

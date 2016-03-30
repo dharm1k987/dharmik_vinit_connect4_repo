@@ -22,7 +22,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	private ImageIcon xMark;
 	Border border = BorderFactory.createLineBorder(Color.BLACK, 3);
 
-	private AIcomponent AI;
+	private AIBot AI;
 
 	/**
 	 * Constructor: instantiates a panel object.
@@ -35,7 +35,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		board = new Board(rows, columns);
 		board.setUpTextBoard();
 
-		AI = new AIcomponent(board, Color.RED, Color.YELLOW);
+		AI = new AIBot(board, Color.RED, Color.YELLOW);
 		createGUIBoard();
 
 		playerChip = new ImageIcon("red-chip.png");
