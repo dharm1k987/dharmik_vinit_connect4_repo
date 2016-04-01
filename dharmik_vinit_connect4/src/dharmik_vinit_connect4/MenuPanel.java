@@ -98,7 +98,7 @@ public  class MenuPanel extends JPanel implements ActionListener {
 		
 		if (e.getSource() == helpBtn)
 		{
-			JOptionPane.showMessageDialog(null, "Make a 4 in a row, either diagonally, vertically, or horizontally.");
+			JOptionPane.showMessageDialog(null, "Make a 4 in a row, either vertically, diagonally, or horizontally.");
 		}
 		
 		
