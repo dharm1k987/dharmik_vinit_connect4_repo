@@ -13,7 +13,7 @@ import javax.swing.*;
  * @version 1.0
  */
 public  class MenuPanel extends JPanel implements ActionListener {
-
+//
 	private JButton onePlayerBtn;
 	private JButton twoPlayerBtn;
 	private JButton helpBtn;

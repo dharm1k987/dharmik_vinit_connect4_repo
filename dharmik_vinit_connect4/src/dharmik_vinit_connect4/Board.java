@@ -10,6 +10,7 @@ import javax.swing.JButton;
  *
  */
 public class Board {
+	//
 	private Chip[][] textBoard;
 	private int rows;
 	private int columns;

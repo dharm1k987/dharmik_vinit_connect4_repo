@@ -7,7 +7,7 @@ package dharmik_vinit_connect4;
  * @version 1.0
  */
 public class AIBot {
-	
+	//
 	private Board board;
 	private int[] AIPosX;
 	private int[] AIPosY;
@@ -46,7 +46,7 @@ public class AIBot {
 	
 	/**
 	 * Method: runs when called to set a position at which AI can put the chip.
-	 * Return: Void
+	 * Return: void
 	 */
 	public void evaluateBoard() {
 

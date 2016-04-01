@@ -6,6 +6,7 @@ package dharmik_vinit_connect4;
  * @version 1.0
  */
 public enum ChipState {
+	//
 	EMPTY,PLAYER1,PLAYER2
 	// EMPTY = yet to be occupied
 	// PLAYER1 = red chip

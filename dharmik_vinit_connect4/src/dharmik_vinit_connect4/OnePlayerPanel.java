@@ -13,7 +13,7 @@ import javax.swing.border.Border;
  * @version 1.0
  */
 public class OnePlayerPanel extends JPanel implements ActionListener {
-
+//
 	private int rows = 7;
 	private int columns = 7;
 	private Board board;
