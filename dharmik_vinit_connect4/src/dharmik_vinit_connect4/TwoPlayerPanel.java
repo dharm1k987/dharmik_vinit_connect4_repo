@@ -99,7 +99,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		if (e.getSource() == buttons[6]) {
 			board.updateTextArray(6);
 		}
-
+		updateGUI();
 		checkValidColumn();
 	
 		winner = board.checkWinner();
