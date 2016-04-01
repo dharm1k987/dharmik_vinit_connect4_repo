@@ -1,6 +1,6 @@
 package dharmik_vinit_connect4;
 
-import java.awt.Color;
+
 
 /**
  * This class is the text based 'chip' in the connect 4 board * 

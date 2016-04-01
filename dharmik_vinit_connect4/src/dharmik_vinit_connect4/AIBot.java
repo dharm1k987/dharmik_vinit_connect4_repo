@@ -1,8 +1,5 @@
 package dharmik_vinit_connect4;
 
-import java.awt.Color;
-import java.util.ArrayList;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Class serves as AI 'thinking class' where it analyzes the best move.
