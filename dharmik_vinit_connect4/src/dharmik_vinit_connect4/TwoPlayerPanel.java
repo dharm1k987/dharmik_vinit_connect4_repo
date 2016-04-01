@@ -3,6 +3,7 @@ package dharmik_vinit_connect4;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.BufferedWriter;
 
 import javax.swing.*;
 import javax.swing.border.Border;
@@ -20,8 +21,9 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 	private JLabel[][] lblChips;
 	private boolean winner = false;
 	private ImageIcon redChip;
-	private ImageIcon yellowChip;	
-	private ImageIcon xMark;
+	private ImageIcon yellowChip;		
+	private ImageIcon redTurnGuide;
+	private ImageIcon yellowTurnGuide;
 	private Border border;
 
 	public TwoPlayerPanel() {
@@ -32,12 +34,13 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		board = new Board(rows, columns);
 		board.setUpTextBoard();
 		border = BorderFactory.createLineBorder(Color.BLACK, 3);
-		createGUIBoard();
+		
 
 		redChip = new ImageIcon("red-chip.png");
-		yellowChip = new ImageIcon("yellow-chip.png");
-		xMark = new ImageIcon("x-mark.png");
-		
+		yellowChip = new ImageIcon("yellow-chip.png");		
+		redTurnGuide = new ImageIcon("color-guide-red.png");
+		yellowTurnGuide = new ImageIcon("color-guide-yellow.png");
+		createGUIBoard();
 		
 	}
 
@@ -50,7 +53,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		for (int i = 0; i < columns; i++) {
 			buttons[i] = new JButton();			
 			buttons[i].setForeground(Color.WHITE);
-			buttons[i].setBackground(Color.RED);
+			buttons[i].setIcon(redTurnGuide);
 			buttons[i].addActionListener(this);
 			buttons[i].setBorder(border);
 			add(buttons[i]);
@@ -103,10 +106,12 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		timeDelay(150);
 		setTurnGuides();
 		if (board.isDraw()) {
+		
 			JOptionPane.showMessageDialog(null, "Draw!");
 			disableAllButtons();
 		}
 		if (winner) {
+		
 			JOptionPane.showMessageDialog(null, "The winner is " + board.getWinner());
 			disableAllButtons();
 		}
@@ -142,15 +147,15 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 	 */
 	private void setTurnGuides() {
 		int turn = board.getTurn();
-		Color colorToFill;
+		ImageIcon iconToChoose;
 		if (turn % 2 == 0) {
-			colorToFill = new Color(255,0,0);
+			iconToChoose = redTurnGuide;
 		} else {
-			colorToFill = new Color(255,255,0);
+			iconToChoose = yellowTurnGuide;
 		}
 
 		for (JButton i : buttons) {
-			i.setBackground(colorToFill);
+			i.setIcon(iconToChoose);
 		}
 
 	}
@@ -160,8 +165,7 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 	 */
 	private void checkValidColumn() {
 		int columnToRemove = board.checkValidColumn(buttons);
-			if (columnToRemove != -1) {
-				buttons[columnToRemove].setIcon(xMark);
+			if (columnToRemove != -1) {				
 			buttons[columnToRemove].setEnabled(false);
 		}
 

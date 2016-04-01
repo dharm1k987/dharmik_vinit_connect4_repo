@@ -14,4 +14,16 @@
 	<natures>
 		<nature>org.eclipse.jdt.core.javanature</nature>
 	</natures>
+	<linkedResources>
+		<link>
+			<name>color-guide-red.png</name>
+			<type>1</type>
+			<location>J:/Copy of dharmik_vinit_connect4/color-guide-red.png</location>
+		</link>
+		<link>
+			<name>color-guide-yellow.png</name>
+			<type>1</type>
+			<location>J:/Copy of dharmik_vinit_connect4/color-guide-yellow.png</location>
+		</link>
+	</linkedResources>
 </projectDescription>

@@ -82,7 +82,9 @@ public  class MenuPanel extends JPanel implements ActionListener {
 			frame2.pack();
 			frame2.setVisible(true);
 			frame2.setResizable(false);
+			 Board.setTurn(0);
 			}
+			
 			else
 			{		frame2 = new JFrame("Connect 4 - 2P");
 					frame2.setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
@@ -90,15 +92,9 @@ public  class MenuPanel extends JPanel implements ActionListener {
 					frame2.pack();
 					frame2.setVisible(true);
 					frame2.setResizable(false);
-					
-					
+					 Board.setTurn(0);
 				}
-			frame2.addWindowListener(new WindowAdapter() {
-			
-		    public void windowClosing(WindowEvent e) {
-		        Board.setTurn(0);
-		        }		    
-			});
+		
 		
 			
 		}

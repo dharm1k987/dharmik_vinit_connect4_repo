@@ -8,29 +8,29 @@ import java.awt.Color;
  * @version 1.0
  */
 public class Chip {
-	private Color color;
+	private ChipState chipState;
 
 	/**
 	 * Default constructor. Set's the intial colour of the chip to black.
 	 */
 	public Chip() {
-		this.color = Color.BLACK;
+		this.chipState = ChipState.EMPTY;
 	}
 
 	/**
 	 * Accessor method.
 	 * @return color of chip.
 	 */
-	public Color getColor() {
-		return color;
+	public ChipState getChipState() {
+		return chipState;
 	}
 
 	/**
 	 * Mutator method. 
 	 * @param color that a chip must be set to.
 	 */
-	public void setColor(Color color) {
-		this.color = color;
+	public void setChipState(ChipState chipState) {
+		this.chipState = chipState;
 	}
 
 }

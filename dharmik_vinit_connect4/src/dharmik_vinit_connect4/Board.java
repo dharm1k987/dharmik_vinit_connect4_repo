@@ -14,7 +14,7 @@ public class Board {
 	private Chip[][] textBoard;
 	private int rows;
 	private int columns;
-	private Color winner;
+	private ChipState winner;
 	private static int turn = 0;
 	private int posX;
 	private int posY;
@@ -68,15 +68,15 @@ public class Board {
 	public void updateTextArray(int temp) {
 	
 		for (int i = rows - 1; i >= 0; i--) {
-			if (textBoard[i][temp].getColor() == Color.BLACK) {
+			if (textBoard[i][temp].getChipState() == ChipState.EMPTY) {
 				if (turn%2 == 0) {
-					textBoard[i][temp].setColor(Color.RED);
+					textBoard[i][temp].setChipState(ChipState.PLAYER1);
 					posX = i;
 					posY = temp;
 					break;
 				} else {
 					
-					textBoard[i][temp].setColor(Color.YELLOW);
+					textBoard[i][temp].setChipState(ChipState.PLAYER2);
 					posX = i;
 					posY = temp;
 					break;
@@ -112,11 +112,11 @@ public class Board {
 	 * @param y - the y array index.
 	 * @return the color of the chip.
 	 */
-	public Color getColor(int x, int y) {
+	public ChipState getChipState(int x, int y) {
 		try {
-			return textBoard[y][x].getColor();
+			return textBoard[y][x].getChipState();
 		} catch (NullPointerException e) {
-			return Color.BLACK;
+			return ChipState.EMPTY;
 		} catch (ArrayIndexOutOfBoundsException e) {
 			return null;
 		}
@@ -141,7 +141,7 @@ public class Board {
 				if (x <= 3) {
 					result = checkHorizontal(i, x, result);
 					if (result) {
-						setWinner(textBoard[i][x].getColor());
+						setWinner(textBoard[i][x].getChipState());
 						break outerloop;
 
 					}
@@ -151,7 +151,7 @@ public class Board {
 				if (i >= 3) {
 					result = checkVertical(i, x, result);
 					if (result) {
-						setWinner(textBoard[i][x].getColor());
+						setWinner(textBoard[i][x].getChipState());
 						break outerloop;
 					}
 				}
@@ -159,14 +159,14 @@ public class Board {
 					if (x <= 3 && i <= 3) {
 						result = checkDiagonalRight(i, x, result);
 						if (result) {
-							setWinner(textBoard[i][x].getColor());
+							setWinner(textBoard[i][x].getChipState());
 							break outerloop;
 						}
 					}
 					if (x >= 3 && i <= 3) {
 						result = checkDiagonalLeft(i, x, result);
 						if (result) {
-							setWinner(textBoard[i][x].getColor());
+							setWinner(textBoard[i][x].getChipState());
 							break outerloop;
 						}
 					}
@@ -182,8 +182,8 @@ public class Board {
 	 * Mutator method. Sets the winner (colour).
 	 * @param color - the colour who won.
 	 */
-	private void setWinner(Color color) {
-		winner = color;
+	private void setWinner(ChipState chipState) {
+		winner = chipState;
 	}
 
 	/**
@@ -191,7 +191,7 @@ public class Board {
 	 * @return the color who wins.
 	 */
 	public String getWinner() {
-		if (winner == Color.RED) {
+		if (winner == ChipState.PLAYER1) {
 			return "Red";
 		} else {
 			return "Yellow";
@@ -207,7 +207,7 @@ public class Board {
 	public int checkValidColumn(JButton[] buttons) {
 		int temp = -1;
 		for (int i = 0; i < 7; i++) {
-			if (textBoard[0][i].getColor() != Color.BLACK && buttons[i].isEnabled() != false) {
+			if (textBoard[0][i].getChipState() != ChipState.EMPTY && buttons[i].isEnabled() != false) {
 				temp = i;				
 				return temp;
 			}
@@ -225,10 +225,10 @@ public class Board {
 	 * @return true or false, if there is a match.
 	 */
 	private boolean checkDiagonalLeft(int i, int x, boolean result) {
-		if (textBoard[i][x].getColor() != Color.BLACK
-				&& textBoard[i][x].getColor() == textBoard[i + 1][x - 1].getColor()
-				&& textBoard[i][x].getColor() == textBoard[i + 2][x - 2].getColor()
-				&& textBoard[i][x].getColor() == textBoard[i + 3][x - 3].getColor()) {
+		if (textBoard[i][x].getChipState() != ChipState.EMPTY
+				&& textBoard[i][x].getChipState() == textBoard[i + 1][x - 1].getChipState()
+				&& textBoard[i][x].getChipState() == textBoard[i + 2][x - 2].getChipState()
+				&& textBoard[i][x].getChipState() == textBoard[i + 3][x - 3].getChipState()) {
 			result = true;
 			return result;
 		}
@@ -244,10 +244,10 @@ public class Board {
 	 * @return true or false, if there is a match.
 	 */
 	private boolean checkDiagonalRight(int i, int x, boolean result) {
-		if (textBoard[i][x].getColor() != Color.BLACK
-				&& textBoard[i][x].getColor() == textBoard[i + 1][x + 1].getColor()
-				&& textBoard[i][x].getColor() == textBoard[i + 2][x + 2].getColor()
-				&& textBoard[i][x].getColor() == textBoard[i + 3][x + 3].getColor()) {
+		if (textBoard[i][x].getChipState() != ChipState.EMPTY
+				&& textBoard[i][x].getChipState() == textBoard[i + 1][x + 1].getChipState()
+				&& textBoard[i][x].getChipState() == textBoard[i + 2][x + 2].getChipState()
+				&& textBoard[i][x].getChipState() == textBoard[i + 3][x + 3].getChipState()) {
 			result = true;
 			return result;
 		}
@@ -262,9 +262,9 @@ public class Board {
 	 * @return true or false, if there is a match.
 	 */
 	private boolean checkVertical(int i, int x, boolean result) {
-		if (textBoard[i][x].getColor() != Color.BLACK && textBoard[i][x].getColor() == textBoard[i - 1][x].getColor()
-				&& textBoard[i][x].getColor() == textBoard[i - 2][x].getColor()
-				&& textBoard[i][x].getColor() == textBoard[i - 3][x].getColor()) {
+		if (textBoard[i][x].getChipState() != ChipState.EMPTY && textBoard[i][x].getChipState() == textBoard[i - 1][x].getChipState()
+				&& textBoard[i][x].getChipState() == textBoard[i - 2][x].getChipState()
+				&& textBoard[i][x].getChipState() == textBoard[i - 3][x].getChipState()) {
 			result = true;
 			return result;
 		}
@@ -279,9 +279,9 @@ public class Board {
 	 * @return true or false, if there is a match.
 	 */
 	private boolean checkHorizontal(int i, int x, boolean result) {
-		if (textBoard[i][x].getColor() != Color.BLACK && textBoard[i][x].getColor() == textBoard[i][x + 1].getColor()
-				&& textBoard[i][x].getColor() == textBoard[i][x + 2].getColor()
-				&& textBoard[i][x].getColor() == textBoard[i][x + 3].getColor()) {
+		if (textBoard[i][x].getChipState() != ChipState.EMPTY && textBoard[i][x].getChipState() == textBoard[i][x + 1].getChipState()
+				&& textBoard[i][x].getChipState() == textBoard[i][x + 2].getChipState()
+				&& textBoard[i][x].getChipState() == textBoard[i][x + 3].getChipState()) {
 			result = true;
 			return result;
 		}
@@ -303,7 +303,7 @@ public class Board {
 	public boolean isDraw() {
 		int countOfFull = 0;
 		for (int i = 0; i < columns; i++) {
-			if (textBoard[0][i].getColor() != Color.BLACK) {
+			if (textBoard[0][i].getChipState() != ChipState.EMPTY) {
 				countOfFull++;
 			}
 		}

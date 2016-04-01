@@ -22,7 +22,6 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	private boolean winner = false;
 	private ImageIcon playerChip;
 	private ImageIcon AIChip;
-	private ImageIcon xMark;
 	private Border border;
 
 	private AIBot AI;
@@ -40,12 +39,12 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		
 		border = BorderFactory.createLineBorder(Color.BLACK, 3);
 
-		AI = new AIBot(board, Color.RED, Color.YELLOW);
+		AI = new AIBot(board, ChipState.PLAYER1, ChipState.PLAYER2);
 		createGUIBoard();
 
-		playerChip = new ImageIcon("red-chip3.png");
-		AIChip = new ImageIcon("yellow-chip3.png");
-		xMark = new ImageIcon("x-mark.png");
+		playerChip = new ImageIcon("red-chip.png");
+		AIChip = new ImageIcon("yellow-chip.png");
+	
 		JOptionPane.showMessageDialog(null, "You are playing against an AI. Please let the computer think and then move (takes a brief moment). \nRed starts.");
 		
 	}
@@ -60,7 +59,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		for (int i = 0; i < columns; i++) {
 			buttons[i] = new JButton("");			
 			buttons[i].setForeground(Color.WHITE);
-			buttons[i].setBackground(Color.RED);
+			buttons[i].setIcon(new ImageIcon("color-guide-red.png"));
 			buttons[i].addActionListener(this);
 			buttons[i].setBorder(border);
 			add(buttons[i]);
@@ -168,13 +167,13 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	 */
 	private void updateGUI() {
 
-		
+	
 		Chip[][] txtbrd = board.getTextBoard();
 		for (int i = 0; i < txtbrd.length; i++) {
 			for (int j = 0; j < txtbrd.length; j++) {
-				if (txtbrd[i][j].getColor().equals(Color.RED)) {
+				if (txtbrd[i][j].getChipState().equals(ChipState.PLAYER1)) {
 					lblChips[i][j].setIcon(playerChip);
-				} else if (txtbrd[i][j].getColor().equals(Color.YELLOW)) {
+				} else if (txtbrd[i][j].getChipState().equals(ChipState.PLAYER2)) {
 					lblChips[i][j].setIcon(AIChip);
 				}
 			}
@@ -188,8 +187,8 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 	private void checkValidColumn() {
 		int columnToRemove = board.checkValidColumn(buttons);
 		
-		if (columnToRemove != -1) {			
-			buttons[columnToRemove].setIcon(xMark);
+		if (columnToRemove != -1) {		
+
 			buttons[columnToRemove].setEnabled(false);
 		}
 

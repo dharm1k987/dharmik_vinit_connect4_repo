@@ -15,8 +15,8 @@ public class AIBot {
 	private int[] AIPosX;
 	private int[] AIPosY;
 	private int finalPositionX;
-	private Color playerColor;
-	private Color AIColor;
+	private ChipState playerChipState;
+	private ChipState AIChipState;
 	private int positionsWithOffScore[][];
 	private int positionsWithDefScore[][];
 	private int numberOfValidMoves;
@@ -25,14 +25,14 @@ public class AIBot {
 	/**
 	 * Method: used to initiate the AI bot.
 	 * @param board: Assumes it is a Board object
-	 * @param playerColor: Assumes it is a Color object
-	 * @param AIColor: Assumes it is a Color object
+	 * @param playerChipState: Assumes it is a Color object
+	 * @param AIChipState: Assumes it is a Color object
 	 */
-	public AIBot(Board board, Color playerColor, Color AIColor) {
+	public AIBot(Board board, ChipState playerChipState, ChipState AIChipState) {
 		this.board = board;
 		this.numberOfValidMoves = 7;
-		this.playerColor = playerColor;
-		this.AIColor = AIColor;
+		this.playerChipState = playerChipState;
+		this.AIChipState = AIChipState;
 		AIPosX = new int[7];
 		
 		positionsWithOffScore = new int[2][7];
@@ -54,8 +54,8 @@ public class AIBot {
 	public void evaluateBoard() {
 
 		
-		evaluatePositions(playerColor);
-		evaluatePositions(AIColor);
+		evaluatePositions(playerChipState);
+		evaluatePositions(AIChipState);
 		
 		//filters array of all valid moves.
 		numberOfValidMoves = 7;
@@ -110,7 +110,7 @@ public class AIBot {
 	public void filterStupidMove() {
 		int numberOfStupidMoves = 0;
 		for (int i = 0; i < positionsWithOffScore[0].length; i++) {
-			if ((getHighestInRow(i, getCorrespondingY(i)-1, playerColor) >= 3) && (((getHighestInRow(i, getCorrespondingY(i), playerColor) != 3) && (getHighestInRow(i, getCorrespondingY(i), AIColor) != 3)))) {
+			if ((getHighestInRow(i, getCorrespondingY(i)-1, playerChipState) >= 3) && (((getHighestInRow(i, getCorrespondingY(i), playerChipState) != 3) && (getHighestInRow(i, getCorrespondingY(i), AIChipState) != 3)))) {
 				numberOfStupidMoves += 1;
 				
 			}
@@ -119,7 +119,7 @@ public class AIBot {
 		
 		if (numberOfValidMoves != numberOfStupidMoves) {
 			for (int i = 0; i < positionsWithOffScore[0].length; i++) {
-				if ((getHighestInRow(i, getCorrespondingY(i)-1, playerColor) >= 3) && (((getHighestInRow(i, getCorrespondingY(i), playerColor) != 3) && (getHighestInRow(i, getCorrespondingY(i), AIColor) != 3)))) {
+				if ((getHighestInRow(i, getCorrespondingY(i)-1, playerChipState) >= 3) && (((getHighestInRow(i, getCorrespondingY(i), playerChipState) != 3) && (getHighestInRow(i, getCorrespondingY(i), AIChipState) != 3)))) {
 					positionsWithOffScore[1][i] = -1;
 					positionsWithDefScore[1][i] = -1;
 					System.out.println("Position which is stupid: "+positionsWithOffScore[0][i]);
@@ -212,7 +212,7 @@ public class AIBot {
 		int y = 6;
 		for (int j = 0; j < AIPosY.length; j++) {
 			try {
-				if (!board.getColor(x, j).equals(Color.BLACK)) {
+				if (!board.getChipState(x, j).equals(ChipState.EMPTY)) {
 					return j-1;
 				}
 			} catch (Exception e) {
@@ -228,13 +228,13 @@ public class AIBot {
 	 * offensively.
 	 * @param color: Assumes it is a valid Color object. 
 	 */
-	private void evaluatePositions(Color color) {
+	private void evaluatePositions(ChipState playerChipState2) {
 		
 		
 		for (int l = 0; l <  AIPosX.length; l++) {
 			innerloop: for (int j = 0; j < AIPosY.length; j++) {
 				try {
-					if (!board.getColor(l, j).equals(Color.BLACK)) {
+					if (!board.getChipState(l, j).equals(ChipState.EMPTY)) {
 						AIPosY[l] = j-1;
 						break innerloop;
 					}
@@ -244,15 +244,15 @@ public class AIBot {
 				}
 			}
 		}		
-		if (color.equals(playerColor)) {
+		if (playerChipState2.equals(playerChipState)) {
 			for (int i = 0; i < AIPosX.length; i++) {
 				positionsWithDefScore[0][i] = i; 
-				positionsWithDefScore[1][i] = getHighestInRow(AIPosX[i], AIPosY[i], color);
+				positionsWithDefScore[1][i] = getHighestInRow(AIPosX[i], AIPosY[i], playerChipState2);
 			}
-		} else if (color.equals(AIColor)) {
+		} else if (playerChipState2.equals(AIChipState)) {
 			for (int i = 0; i < AIPosX.length; i++) {
 				positionsWithOffScore[0][i] = i; 
-				positionsWithOffScore[1][i] = getHighestInRow(AIPosX[i], AIPosY[i], color);
+				positionsWithOffScore[1][i] = getHighestInRow(AIPosX[i], AIPosY[i], playerChipState2);
 			}
 		}
 		
@@ -279,11 +279,11 @@ public class AIBot {
 	 * how many in a row it has. It then adds the parallel directions (i.e. left and right). Finally,
 	 * it returns the highest score from all the possible directions. 
 	 */
-	private int getHighestInRow (int positionX, int positionY, Color color) {
+	private int getHighestInRow (int positionX, int positionY, ChipState playerChipState2) {
 		int[] directionScore = new int[7];
 		
 		for (int j = 0; j < directionScore.length; j++) {
-			directionScore[j] = evaluateDirection(j, positionX, positionY, color);
+			directionScore[j] = evaluateDirection(j, positionX, positionY, playerChipState2);
 			
 			
 		}
@@ -321,7 +321,7 @@ public class AIBot {
 	 * @Method: Given a location in the grid and a direction value, checks how many chips of a color
 	 * there are in a row.
 	 */
-	private int evaluateDirection(int directionValue, int positionX, int positionY, Color color) {
+	private int evaluateDirection(int directionValue, int positionX, int positionY, ChipState playerChipState2) {
 		int inARow = 0;
 		int count = 0;
 		int playerChips = 0;
@@ -336,15 +336,15 @@ public class AIBot {
 				
 				
 				
-				if (board.getColor(checkDirection(directionValue, 1, pX1), 
-						checkDirection(directionValue, 0, pY1)).equals(color)) {
+				if (board.getChipState(checkDirection(directionValue, 1, pX1), 
+						checkDirection(directionValue, 0, pY1)).equals(playerChipState2)) {
 					
 					pY1 = checkDirection(directionValue, 0, pY1);
 					pX1 = checkDirection(directionValue, 1, pX1); 
 					playerChips += 1;
 					
 				}
-				else if (!board.getColor(pX1, pY1).equals(color)) {
+				else if (!board.getChipState(pX1, pY1).equals(playerChipState2)) {
 					break loop;
 				}
 				count ++;
