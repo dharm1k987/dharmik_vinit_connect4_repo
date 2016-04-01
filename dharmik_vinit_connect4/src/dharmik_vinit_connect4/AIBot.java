@@ -60,7 +60,7 @@ public class AIBot {
 		//filters array of all valid moves.
 		numberOfValidMoves = 7;
 		filterInvalidMoves();
-		filterStupidMove(); // possible change this order???
+		filterStupidMove(); 
 		
 		
 		//Sorted here.
