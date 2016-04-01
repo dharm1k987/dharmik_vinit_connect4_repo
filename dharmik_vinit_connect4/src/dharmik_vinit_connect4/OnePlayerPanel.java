@@ -43,8 +43,8 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		AI = new AIBot(board, Color.RED, Color.YELLOW);
 		createGUIBoard();
 
-		playerChip = new ImageIcon("red-chip.png");
-		AIChip = new ImageIcon("yellow-chip.png");
+		playerChip = new ImageIcon("red-chip3.png");
+		AIChip = new ImageIcon("yellow-chip3.png");
 		xMark = new ImageIcon("x-mark.png");
 		JOptionPane.showMessageDialog(null, "You are playing against an AI. Please let the computer think and then move (takes a brief moment). \nRed starts.");
 		
@@ -120,6 +120,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		}
 		else
 		{
+			
 			AI.evaluateBoard();
 			
 			board.updateTextArray(AI.getFinalPositionX());
