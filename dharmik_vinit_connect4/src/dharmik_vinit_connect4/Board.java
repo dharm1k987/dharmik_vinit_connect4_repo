@@ -107,10 +107,10 @@ public class Board {
 
 	
 	/**
-	 * Method: Returns the color of a specified chip.
+	 * Method: Returns the ChipState of a specified chip.
 	 * @param x - the x array index.
 	 * @param y - the y array index.
-	 * @return the color of the chip.
+	 * @return the ChipState of the chip.
 	 */
 	public ChipState getChipState(int x, int y) {
 		try {
@@ -180,7 +180,7 @@ public class Board {
 
 	/**
 	 * Mutator method. Sets the winner (colour).
-	 * @param color - the colour who won.
+	 * @param ChipState - the ChipState who won.
 	 */
 	private void setWinner(ChipState chipState) {
 		winner = chipState;
@@ -188,7 +188,7 @@ public class Board {
 
 	/**
 	 * Accessor method. 
-	 * @return the color who wins.
+	 * @return the Color string of the winner.
 	 */
 	public String getWinner() {
 		if (winner == ChipState.PLAYER1) {

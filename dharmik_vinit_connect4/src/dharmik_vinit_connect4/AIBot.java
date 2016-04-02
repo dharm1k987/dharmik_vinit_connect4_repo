@@ -2,7 +2,8 @@ package dharmik_vinit_connect4;
 
 
 /**
- * Class serves as AI 'thinking class' where it analyzes the best move.
+ * Class serves as AI 'thinking class' where it analyzes the best move by evaluating all the valid
+ * moves. It chooses the best one between defensive and offensive, prioritizing Defensive.
  * @author Dharmik, Vinit
  * @version 1.0
  */
@@ -22,8 +23,8 @@ public class AIBot {
 	/**
 	 * Method: used to initiate the AI bot.
 	 * @param board: Assumes it is a Board object
-	 * @param playerChipState: Assumes it is a Color object
-	 * @param AIChipState: Assumes it is a Color object
+	 * @param playerChipState: Assumes it is a valid ChipState enum. 
+	 * @param AIChipState: Assumes it is a valid ChipState enum. 
 	 */
 	public AIBot(Board board, ChipState playerChipState, ChipState AIChipState) {
 		this.board = board;
@@ -223,7 +224,7 @@ public class AIBot {
 	 * @Method: Evaluates the possible positions at which AI can put chip, and rates the position
 	 * by how many chips it blocks if used defensively, or how many chip in a row it forms if used
 	 * offensively.
-	 * @param color: Assumes it is a valid Color object. 
+	 * @param playerChipState2: Assumes it is a valid ChipState enum. 
 	 */
 	private void evaluatePositions(ChipState playerChipState2) {
 		
@@ -270,8 +271,8 @@ public class AIBot {
 	 * 
 	 * @param positionX: Assumes it is an integer value between 0-6
 	 * @param positionY: Assumes it is an integer value between 0-6
-	 * @param color: Assumes it is a Valid Color object
-	 * @Method: Evaluates the highest amount of chips of a given color in a row. It retrieves this value
+	 * @param playerChipState2: Assumes it is a valid ChipState enum. 
+	 * @Method: Evaluates the highest amount of chips of a given ChipState in a row. It retrieves this value
 	 * by assessing all the 7 (excluding top) directions from a given location in the grid and checking
 	 * how many in a row it has. It then adds the parallel directions (i.e. left and right). Finally,
 	 * it returns the highest score from all the possible directions. 
@@ -314,8 +315,8 @@ public class AIBot {
 	 * @param directionValue: Assumes it is an integer value between 0-6
 	 * @param positionX: Assumes it is an integer value between 0-6
 	 * @param positionY: Assumes it is an integer value between 0-6
-	 * @param color: Assumes it is a valid Color object
-	 * @Method: Given a location in the grid and a direction value, checks how many chips of a color
+	 * @param playerChipState2: Assumes it is a valid ChipState enum. 
+	 * @Method: Given a location in the grid and a direction value, checks how many chips of a ChipState
 	 * there are in a row.
 	 */
 	private int evaluateDirection(int directionValue, int positionX, int positionY, ChipState playerChipState2) {

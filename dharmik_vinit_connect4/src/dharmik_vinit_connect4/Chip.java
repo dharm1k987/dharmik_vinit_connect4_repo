@@ -20,7 +20,7 @@ public class Chip {
 
 	/**
 	 * Accessor method.
-	 * @return color of chip.
+	 * @return ChipState of chip.
 	 */
 	public ChipState getChipState() {
 		return chipState;
@@ -28,7 +28,7 @@ public class Chip {
 
 	/**
 	 * Mutator method. 
-	 * @param color that a chip must be set to.
+	 * @param ChipState that a chip must be set to.
 	 */
 	public void setChipState(ChipState chipState) {
 		this.chipState = chipState;
