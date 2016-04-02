@@ -334,11 +334,11 @@ public class AIBot {
 				
 				
 				
-				if (board.getChipState(checkDirection(directionValue, 1, pX1), 
-						checkDirection(directionValue, 0, pY1)).equals(playerChipState2)) {
+				if (board.getChipState(Incrementor(directionValue, 1, pX1), 
+						Incrementor(directionValue, 0, pY1)).equals(playerChipState2)) {
 					
-					pY1 = checkDirection(directionValue, 0, pY1);
-					pX1 = checkDirection(directionValue, 1, pX1); 
+					pY1 = Incrementor(directionValue, 0, pY1);
+					pX1 = Incrementor(directionValue, 1, pX1); 
 					playerChips += 1;
 					
 				}
@@ -366,7 +366,7 @@ public class AIBot {
 	 * @param axisValue: incremented by 1. Assumed to be an integer.
 	 * @return: returns an integer.
 	 */
-	private int checkDirection (int directionValue, int domainValue, int axisValue) {
+	private int Incrementor (int directionValue, int domainValue, int axisValue) {
 		if (directionValue == 3) {
 			if (domainValue == 0) {
 				axisValue += 1;
