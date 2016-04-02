@@ -289,11 +289,10 @@ public class AIBot {
 		
 		for (int k = 0; k < twoWayDirectionScore.length-1; k++) {
 			twoWayDirectionScore[k] = directionScore[k] + directionScore[k+4];
-			//System.out.println(directionScore[k]+" "+directionScore[k+4]);
+			
 		}
 		twoWayDirectionScore[twoWayDirectionScore.length-1] = directionScore[3];
-		//System.out.println(twoWayDirectionScore[3]);
-		//System.out.println("-------");
+		
 		
 		int highestDirectionScore = 0;
 		
@@ -348,7 +347,7 @@ public class AIBot {
 				count ++;
 			}
 		} catch (NullPointerException e) {
-			//System.out.println("Caught a null");
+			//System.out.println("null pointer reached.");
 		} 
 		
 		inARow += playerChips;
