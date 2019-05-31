@@ -1,5 +1,4 @@
-package dharmik_vinit_connect4;
-
+package com.dv.app.models;
 
 /**
  * Class serves as AI 'thinking class' where it analyzes the best move by evaluating all the valid

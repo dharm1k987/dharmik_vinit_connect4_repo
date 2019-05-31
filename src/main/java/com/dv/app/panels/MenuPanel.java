@@ -1,10 +1,13 @@
-package dharmik_vinit_connect4;
+package com.dv.app.panels;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
 import javax.swing.*;
+
+import com.dv.app.Resource;
+import com.dv.app.models.Board;
 
 /**
  * Class is a GUI menu, which allows the user to pick the game type (1p/2p).
@@ -50,7 +53,7 @@ public  class MenuPanel extends JPanel implements ActionListener {
 		helpBtn.setFont(btnFont);
 	
 		background = new JLabel("");
-		background.setIcon(new ImageIcon("background.png"));
+		background.setIcon(Resource.getResource(getClass(), "/background.png"));
 		background.setBounds(15, 20, 484, 561);
 		
 		add(onePlayerBtn);

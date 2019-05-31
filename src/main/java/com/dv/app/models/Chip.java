@@ -1,6 +1,4 @@
-package dharmik_vinit_connect4;
-
-
+package com.dv.app.models;
 
 /**
  * This class is the text based 'chip' in the connect 4 board * 

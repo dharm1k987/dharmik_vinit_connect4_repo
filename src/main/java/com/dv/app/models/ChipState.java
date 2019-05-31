@@ -1,5 +1,4 @@
-package dharmik_vinit_connect4;
-
+package com.dv.app.models;
 /**
  * This class defines three states of the chip
  * @author Dharmik, Vinit

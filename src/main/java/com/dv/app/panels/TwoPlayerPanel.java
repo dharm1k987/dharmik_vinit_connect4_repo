@@ -1,4 +1,4 @@
-package dharmik_vinit_connect4;
+package com.dv.app.panels;
 
 import java.awt.*;
 import java.awt.event.ActionEvent;
@@ -7,6 +7,9 @@ import java.awt.event.ActionListener;
 
 import javax.swing.*;
 import javax.swing.border.Border;
+
+import com.dv.app.Resource;
+import com.dv.app.models.Board;
 
 /**
  * This class is used when the user wants to play against another user.
@@ -37,10 +40,10 @@ public class TwoPlayerPanel extends JPanel implements ActionListener {
 		border = BorderFactory.createLineBorder(Color.BLACK, 3);
 		
 
-		redChip = new ImageIcon("red-chip.png");
-		yellowChip = new ImageIcon("yellow-chip.png");		
-		redTurnGuide = new ImageIcon("color-guide-red.png");
-		yellowTurnGuide = new ImageIcon("color-guide-yellow.png");
+		redChip =  Resource.getResource(getClass(), "/red-chip.png");
+		yellowChip = Resource.getResource(getClass(), "/yellow-chip.png");
+		redTurnGuide = Resource.getResource(getClass(), "/color-guide-red.png");
+		yellowTurnGuide = Resource.getResource(getClass(), "/color-guide-yellow.png");
 		createGUIBoard();
 		
 	}

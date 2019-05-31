@@ -1,4 +1,4 @@
-package dharmik_vinit_connect4;
+package com.dv.app.panels;
 
 
 import java.awt.*;
@@ -6,6 +6,12 @@ import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import javax.swing.*;
 import javax.swing.border.Border;
+
+import com.dv.app.Resource;
+import com.dv.app.models.AIBot;
+import com.dv.app.models.Board;
+import com.dv.app.models.Chip;
+import com.dv.app.models.ChipState;
 
 /**
  * This class is used when the user wants to play against the AI.
@@ -42,8 +48,8 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		AI = new AIBot(board, ChipState.PLAYER1, ChipState.PLAYER2);
 		createGUIBoard();
 
-		playerChip = new ImageIcon("red-chip.png");
-		AIChip = new ImageIcon("yellow-chip.png");
+		playerChip = Resource.getResource(getClass(), "/red-chip.png");
+		AIChip = Resource.getResource(getClass(), "/yellow-chip.png");
 	
 		JOptionPane.showMessageDialog(null, "You are playing against an AI. Please let the computer think and then move (takes a brief moment). \nRed starts.");
 		
@@ -59,7 +65,7 @@ public class OnePlayerPanel extends JPanel implements ActionListener {
 		for (int i = 0; i < columns; i++) {
 			buttons[i] = new JButton("");			
 			buttons[i].setForeground(Color.WHITE);
-			buttons[i].setIcon(new ImageIcon("color-guide-red.png"));
+			buttons[i].setIcon(Resource.getResource(getClass(), "/color-guide-red.png"));
 			buttons[i].addActionListener(this);
 			buttons[i].setBorder(border);
 			add(buttons[i]);
