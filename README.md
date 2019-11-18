@@ -21,7 +21,7 @@ java -jar target/connect4-1.0-SNAPSHOT
   
 * Two Player Mode  
   
- ![The main menu for connect 4](https://github.com/dharm1k987/dharmik_vinit_connect4_repo/blob/master/connect_4_screen3.PNG)  
+ ![The main menu for connect 4](https://github.com/dharm1k987/dharmik_vinit_connect4_repo/blob/master/screens/connect_4_screen3.PNG)  
   
 ## Summary  
 This program is the Java implementation of the classic Connect 4.  
